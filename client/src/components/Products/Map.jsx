@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const containerStyle = {
-  width: '173vh',
+  width: '175vh',
   height: '400px',
   borderRadius: '1rem',
   boxShadow: '2px 2px 8px #000000',
@@ -68,8 +68,6 @@ function Map() {
       // location.push(locationFromApi);
     });
   }, [address]);
-
-  console.log('outside', location);
 
   return (
     <div className="flex justify-center mt-10 mb-10">

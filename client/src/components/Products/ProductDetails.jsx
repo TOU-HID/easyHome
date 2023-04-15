@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { fetchUserByid } from '../../features/users/userSlice';
+import ProductRating from './ProductRating';
+import RatingModla from './RatingModla';
+
 function ProductDetails() {
   const dispatch = useDispatch();
   const { selectedHouse } = useSelector((state) => state.house);
@@ -10,6 +13,10 @@ function ProductDetails() {
   }, []);
 
   const { currentProductLandlord } = useSelector((state) => state.user);
+
+  const handlePayment = () => {
+    alert('Make payment wuth ssl');
+  };
 
   return (
     <div>
@@ -58,8 +65,10 @@ function ProductDetails() {
                 </span>
               </div>
               <div className=" text-2xl">
-                <span className="font-bold">Rent</span> {selectedHouse[0].rent}{' '}
-                BDT/Month
+                <div>
+                  <span className="font-bold">Rent</span>{' '}
+                  {selectedHouse[0].rent} BDT/Month
+                </div>
               </div>
             </div>
           </div>
@@ -75,16 +84,26 @@ function ProductDetails() {
               <p>
                 Location: {selectedHouse[0].area}, {selectedHouse[0].city}
               </p>
-              <p>Rent: {selectedHouse[0].rent} BD/Month</p>
+              <p>Rent: {selectedHouse[0].rent} BDT/Month</p>
             </div>
+
             <div className="card-actions justify-center mt-3">
-              <button className="btn rounded-md bg-rose-500 text-white border-none hover:bg-rose-600 w-[15rem]">
+              <label
+                className="btn rounded-md bg-rose-500 text-white border-none hover:bg-rose-600 w-[15rem]"
+                onClick={handlePayment}
+                htmlFor="rating-modal"
+              >
                 Reserve
-              </button>
+              </label>
+
+              {/* <label className="btn">open modal</label> */}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal for rating  */}
+      <RatingModla />
     </div>
   );
 }
