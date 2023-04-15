@@ -44,7 +44,7 @@ const userSlice = createSlice({
         state.isError = false;
         state.isLoading = false;
         state.users.push(action.payload);
-        state.loggedInUsers[0] = action.payload;
+        state.loggedInUsers[0] = action.payload.data;
       })
       .addCase(addUser.pending, (state) => {
         state.isError = false;

@@ -5,12 +5,15 @@ import {
   setLoggedInUsers,
 } from '../../features/users/userSlice';
 import { useDispatch } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 function LogoutDropdown() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const handleProfileNavigation = () => {
+    navigate('/profile');
+  };
   function handleLogout() {
     Swal.fire({
       title: 'Are you sure?',
@@ -64,8 +67,11 @@ function LogoutDropdown() {
           className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mb-2"
         >
           <li>
-            <button className="active:scale-y-90 transition-transform flex hover:bg-zinc-200">
-              Edit Profile
+            <button
+              className="active:scale-y-90 transition-transform flex hover:bg-zinc-200"
+              onClick={handleProfileNavigation}
+            >
+              Profile
             </button>
           </li>
           <li>

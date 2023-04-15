@@ -154,13 +154,6 @@ function Signup() {
               {' '}
               Sign Up
             </button>
-
-            {/* ERROR HANDELER */}
-            {/* {!isLoading && isError && (
-              <p className="flex justify-center animate-bounce text-xl text-red-500 mt-5">
-                Incorrect information
-              </p>
-            )} */}
           </form>
         </div>
       </div>

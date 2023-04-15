@@ -6,6 +6,8 @@ import ProductDetailsPage from '../pages/ProductDetailsPage';
 import Error from '../pages/Error';
 import UserProfile from '../pages/UserProfile';
 import Protected from './Protected';
+import CreateProductForm from '../components/Products/CreateProductForm';
+import PortectedPost from './PortectedPost';
 
 function Index() {
   return (
@@ -14,12 +16,21 @@ function Index() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/profile" element={<UserProfile />} />
+
         <Route
           path="/productDetails"
           element={
             <Protected>
               <ProductDetailsPage />
             </Protected>
+          }
+        />
+        <Route
+          path="/post"
+          element={
+            <PortectedPost>
+              <CreateProductForm />
+            </PortectedPost>
           }
         />
         <Route path="/*" element={<Error />} />

@@ -1,8 +1,9 @@
 const USER = require('../models/user.schema');
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'hello1234';
-// create user
+const SECRET_KEY = process.env.JWT_SECRET;
+
 const createUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await USER.findOne({ email });
@@ -19,7 +20,10 @@ const createUser = async (req, res) => {
       const userRes = await newUser.save();
       // FOR JWT
       const uid = userRes._id;
-      const accessToken = jwt.sign({ uid }, SECRET_KEY);
+      const accessToken = jwt.sign({ uid }, SECRET_KEY, {
+        expiresIn: '24h',
+      });
+      console.log(accessToken);
       res.status(201).send({ data: userRes, accessToken: accessToken });
     } catch (error) {
       console.log(error);
@@ -42,14 +46,15 @@ const login = async (req, res) => {
     // console.log(validatePassword);
     if (!validatePassword) throw new Error();
     // const Uuid = findedUser._id;
-    const accessToken = jwt.sign({ uid: findedUser._id }, SECRET_KEY);
+    const accessToken = jwt.sign({ uid: findedUser._id }, SECRET_KEY, {
+      expiresIn: '24h',
+    });
     res.status(200).send({ data: findedUser, accessToken: accessToken });
   } catch (error) {
     res.status(400).send({ error: '400', message: 'Incorrect Information' });
   }
 };
 
-// get user by id
 const getUserProfile = (req, res) => {
   try {
     const { _id, userName, email, role } = req.user;
