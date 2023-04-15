@@ -6,7 +6,7 @@ import {
 } from '../../features/users/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-
+import { persistor } from '../../app/store';
 function LogoutDropdown() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,6 +42,11 @@ function LogoutDropdown() {
   }
   function removeToken() {
     localStorage.removeItem('accessToken');
+    // localStorage.removeItem('persist:root');
+    persistor.pause();
+    persistor.flush().then(() => {
+      return persistor.purge();
+    });
   }
   function handleAuth() {
     dispatch(setIsAuthenticated(false));

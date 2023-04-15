@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getUser, creatUser, loginUser } from './userAPI';
+import { getUser, creatUser, loginUser, getUserByID } from './userAPI';
 
 const initialState = {
-  users: [],
   loggedInUsers: [],
   isLoading: false,
   isError: false,
   error: '',
   isAuthenticated: false,
+  currentProductLandlord: [],
 };
 
 export const addUser = createAsyncThunk('user/addUser', async (data) => {
@@ -24,6 +24,13 @@ export const fetchUser = createAsyncThunk('users/fetchUser', async (data) => {
   const userInfo = await getUser(accessToken);
   return userInfo;
 });
+export const fetchUserByid = createAsyncThunk(
+  'users/fetchUserByid',
+  async (id) => {
+    const userInfo = await getUserByID(id);
+    return userInfo;
+  }
+);
 
 //  create slice
 const userSlice = createSlice({
@@ -43,7 +50,6 @@ const userSlice = createSlice({
       .addCase(addUser.fulfilled, (state, action) => {
         state.isError = false;
         state.isLoading = false;
-        state.users.push(action.payload);
         state.loggedInUsers[0] = action.payload.data;
       })
       .addCase(addUser.pending, (state) => {
@@ -82,6 +88,21 @@ const userSlice = createSlice({
         state.loggedInUsers[0] = action.payload;
       })
       .addCase(fetchUser.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+      })
+      .addCase(fetchUserByid.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(fetchUserByid.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        // state.loggedInUsers.push(action.payload);
+        state.currentProductLandlord[0] = action.payload;
+      })
+      .addCase(fetchUserByid.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.error = action.error?.message;

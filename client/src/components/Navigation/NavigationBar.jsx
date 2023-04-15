@@ -14,7 +14,7 @@ function NavigationBar() {
       <div className="logo">
         <Link to="/">
           <img
-            src="assets/icons/eh.png"
+            src="https://drive.google.com/uc?export=view&id=1ORoweE298lbyRjAYvcygsE-0OA4QMwKH"
             className="w-36 h-11 mt-2 ml-4 scale-150"
           ></img>
         </Link>

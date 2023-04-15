@@ -24,7 +24,8 @@ export const retriveAllHouses = createAsyncThunk(
 export const retriveSelectedHouses = createAsyncThunk(
   'houses/retriveSelectedHouses',
   async (houseId) => {
-    const selectedHouse = await getAllHouses(houseId);
+    const selectedHouse = await getHousesByID(houseId);
+
     return selectedHouse;
   }
 );
@@ -64,7 +65,7 @@ const houseSlice = createSlice({
       .addCase(retriveAllHouses.fulfilled, (state, action) => {
         state.isError = false;
         state.isLoading = false;
-        state.houseList[0] = action.payload;
+        state.houseList = action.payload;
       })
       .addCase(retriveAllHouses.pending, (state) => {
         state.isError = false;

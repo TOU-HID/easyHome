@@ -18,7 +18,7 @@ function Index() {
         <Route path="/profile" element={<UserProfile />} />
 
         <Route
-          path="/productDetails"
+          path="/productDetails/:id"
           element={
             <Protected>
               <ProductDetailsPage />

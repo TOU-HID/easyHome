@@ -14,11 +14,11 @@ function CreateProductForm() {
   const [area, setArea] = useState('');
   const [city, setCity] = useState('');
   const [type, setType] = useState('');
-  const [rent, setRent] = useState(0);
-  const [bedroom, setBedroom] = useState(0);
-  const [bathroom, setBathroom] = useState(0);
-  const [sqft, setSqft] = useState(0);
-  const [availableform, setAvailableform] = useState(0);
+  const [rent, setRent] = useState('');
+  const [bedroom, setBedroom] = useState('');
+  const [bathroom, setBathroom] = useState('');
+  const [sqft, setSqft] = useState('');
+  const [availableform, setAvailableform] = useState('');
   const [image, setImage] = useState([]);
 
   const [loading, setLoading] = useState(false);
@@ -50,28 +50,34 @@ function CreateProductForm() {
       image,
       postby: loggedInUsers[0]._id,
     };
-    dispatch(addHouse(houseDetails)).then((res) => {
-      // console.log(res.payload);
+    console.log(image.length);
+    if (image.length != 4) {
+      toast.error('You are allowed to select exectly 4 images');
+      setLoading(false);
+    } else {
+      dispatch(addHouse(houseDetails)).then((res) => {
+        // console.log(res.payload);
 
-      if (res.payload !== undefined) {
-        setLoading(false);
-        setImage([]);
-        setHouseName('');
-        setRent(0);
-        setHouseNumber('');
-        setArea('');
-        setCity('');
-        setBedroom(0);
-        setBathroom(0);
-        setSqft(0);
-        setAvailableform('');
-        setType('');
-        toast.success('post successful');
-      } else {
-        setLoading(false);
-        toast.error('Invalid Information');
-      }
-    });
+        if (res.payload !== undefined) {
+          setLoading(false);
+          setImage([]);
+          setHouseName('');
+          setRent('');
+          setHouseNumber('');
+          setArea('');
+          setCity('');
+          setBedroom('');
+          setBathroom('');
+          setSqft('');
+          setAvailableform('');
+          setType('');
+          toast.success('post successful');
+        } else {
+          setLoading(false);
+          toast.error('Invalid Information');
+        }
+      });
+    }
     // console.log(houseDetails);
     e.preventDefault();
     // alert('submit hoye geche');
@@ -79,6 +85,7 @@ function CreateProductForm() {
 
   return (
     <div>
+      <div>{type}</div>
       <div className="flex ">
         {/* Left SideBar */}
         <div className="flex flex-col  p-3 bg-rose-500  shadow w-60 ">
@@ -302,7 +309,7 @@ function CreateProductForm() {
               {/* Image Upload */}
               <div>
                 <label className="label">
-                  <span className="text-base label-text">Select Images</span>
+                  <span className="text-base label-text">Select 4* Images</span>
                 </label>
                 <input
                   onChange={handleImage}

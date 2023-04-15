@@ -65,5 +65,15 @@ const getUserProfile = (req, res) => {
     res.status(400).send({ error: '400', message: ' resources not found ' });
   }
 };
+const getUserById = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const selectedUser = await USER.findById(userId);
+    selectedUser.password = '';
+    res.status(200).send(selectedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-module.exports = { createUser, getUserProfile, login };
+module.exports = { createUser, getUserProfile, login, getUserById };
