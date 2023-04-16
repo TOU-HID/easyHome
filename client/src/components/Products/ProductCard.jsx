@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function ProductCard({ house }) {
+  const rating = 5;
   return (
     <div className="card w-[20vw]  bg-base-100 shadow-md ">
       <figure className="pt-2 pl-2 pr-2 h-[20vh]">
@@ -34,7 +35,7 @@ function ProductCard({ house }) {
               <div>
                 <i className="fa-solid fa-star fa-sm"></i>
               </div>
-              <div>{house.rating}</div>
+              <div>{rating}</div>
             </div>
             <div className="mt-1 text-md text-gray-500  font-light flex justify-end">
               {house.type.charAt(0).toUpperCase() + house.type.slice(1)}

@@ -13,10 +13,15 @@ const houseSchema = new Schema({
   sqft: Number,
   type: String,
   availableform: Date,
-  rating: {
-    type: Number,
-    default: 5,
-  },
+  rating: [
+    {
+      raterid: String,
+      rate: {
+        type: Number,
+        default: 0,
+      },
+    },
+  ],
   isbooked: {
     type: Boolean,
     default: false,
@@ -37,14 +42,16 @@ const houseSchema = new Schema({
       },
     },
   ],
-  comments: {
-    commenterId: {
-      type: String,
+  comments: [
+    {
+      commenterId: {
+        type: String,
+      },
+      comment: {
+        type: String,
+      },
     },
-    comment: {
-      type: String,
-    },
-  },
+  ],
   postby: {
     type: ObjectId,
     ref: 'User',

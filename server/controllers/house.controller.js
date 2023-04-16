@@ -73,10 +73,32 @@ const deleteHouseById = async (req, res) => {
     console.log(error);
   }
 };
+
+const rateHouseById = async (req, res) => {
+  const houseId = req.params.id;
+  try {
+    const updatedHouse = await House.findByIdAndUpdate(
+      houseId,
+      {
+        $push: {
+          rating: req.body,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+    // res.status(200).send(updatedHouse.rating);
+    res.status(200).send({ status: '200', message: 'Rating successful' });
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   createAdvertise,
   getAllHouses,
   getHouseById,
   updateHouseById,
   deleteHouseById,
+  rateHouseById,
 };
