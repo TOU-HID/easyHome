@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 function ProductCard({ house }) {
-  const rating = 5;
+  // Rating related logic
+  let rating = 0;
+  const no_of_rating = house.rating.length;
+  // console.log(house.rating);
+  house.rating.map((elem) => {
+    rating += elem.rate;
+  });
+
   return (
     <div className="card w-[20vw]  bg-base-100 shadow-md ">
       <figure className="pt-2 pl-2 pr-2 h-[20vh]">
@@ -35,7 +41,7 @@ function ProductCard({ house }) {
               <div>
                 <i className="fa-solid fa-star fa-sm"></i>
               </div>
-              <div>{rating}</div>
+              <div>{Math.ceil(rating / no_of_rating)}</div>
             </div>
             <div className="mt-1 text-md text-gray-500  font-light flex justify-end">
               {house.type.charAt(0).toUpperCase() + house.type.slice(1)}

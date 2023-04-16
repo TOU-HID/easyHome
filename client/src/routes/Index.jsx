@@ -12,7 +12,6 @@ import PortectedPost from './PortectedPost';
 function Index() {
   return (
     <BrowserRouter>
-      <NavigationBar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/profile" element={<UserProfile />} />

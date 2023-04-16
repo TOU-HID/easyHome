@@ -7,7 +7,7 @@ import Search from './Search';
 import Dropdown from './Dropdown';
 import LogoutDropdown from './LogoutDropdown';
 
-function NavigationBar() {
+function NavigationBar({ isProductDetailsPage }) {
   const { loggedInUsers, isAuthenticated } = useSelector((state) => state.user);
   return (
     <div className="flex justify-between px-[6vw] pt-5 pb-5 border-b-2">
@@ -19,10 +19,17 @@ function NavigationBar() {
           ></img>
         </Link>
       </div>
-      <div className="search">
-        <Search />
-      </div>
-      <div className="Login border-2 py-2 px-3 h-10 rounded-full mt-2 shadow-lg">
+      {isProductDetailsPage ? (
+        <></>
+      ) : (
+        <>
+          <div className="search">
+            <Search />
+          </div>
+        </>
+      )}
+
+      <div className="Login border-2 pt-2 pr-1 h-10 pl-4 rounded-full mt-2 shadow-lg  mr-3">
         {isAuthenticated ? <LogoutDropdown /> : <Dropdown />}
       </div>
     </div>

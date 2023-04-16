@@ -5,7 +5,7 @@ import {
   setLoggedInUsers,
 } from '../../features/users/userSlice';
 import { useDispatch } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { persistor } from '../../app/store';
 function LogoutDropdown() {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ function LogoutDropdown() {
 
         <ul
           tabIndex={0}
-          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mb-2"
+          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-56 mb-2 mt-5"
         >
           <li>
             <button

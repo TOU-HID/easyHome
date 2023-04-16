@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../features/users/userSlice';
 import PostAlert from '../components/PostAlert';
 import Error from './Error';
+import NavigationBar from '../components/Navigation/NavigationBar';
 
 function UserProfile() {
   const { loggedInUsers } = useSelector((state) => state.user);
@@ -17,6 +18,7 @@ function UserProfile() {
 
   return (
     <>
+      <NavigationBar />
       {loggedInUsers.length > 0 ? (
         <>
           {loggedInUsers[0].role === 'landlord' ? <PostAlert /> : <PostAlert />}

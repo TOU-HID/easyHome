@@ -8,13 +8,13 @@ function ProductRating() {
 
   return (
     <div>
-      <ReactStars
+      {/* <ReactStars
         count={5}
         onChange={ratingChanged}
         size={50}
         color2={'#ffd700'}
         half={false}
-      />
+      /> */}
     </div>
   );
 }

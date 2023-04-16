@@ -5,6 +5,8 @@ import moment from 'moment';
 import { addHouse } from '../../features/houses/houseSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavigationBar from '../Navigation/NavigationBar';
+
 function CreateProductForm() {
   const dispatch = useDispatch();
 
@@ -85,10 +87,12 @@ function CreateProductForm() {
 
   return (
     <div>
+      <NavigationBar />
+
       <div>{type}</div>
       <div className="flex ">
         {/* Left SideBar */}
-        <div className="flex flex-col  p-3 bg-rose-500  shadow w-60 ">
+        <div className="flex flex-col  p-3 bg-rose-500  shadow w-60 min-h-[90vh] ">
           <div className="space-y-8">
             <div className="flex items-center">
               <h2 className="text-2xl text-white ml-5 mt-5">

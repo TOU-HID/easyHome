@@ -5,7 +5,8 @@ import Map from '../components/Products/Map';
 import ProductDetails from '../components/Products/ProductDetails';
 import ProductCarousel from '../components/Products/ProductCarousel';
 import { retriveSelectedHouses } from './../features/houses/houseSlice';
-import ProductRating from '../components/Products/ProductRating';
+import NavigationBar from '../components/Navigation/NavigationBar';
+
 function ProductDetailsPage() {
   const dispatch = useDispatch();
   const { selectedHouse } = useSelector((state) => state.house);
@@ -17,6 +18,7 @@ function ProductDetailsPage() {
   }, []);
   return (
     <div>
+      <NavigationBar isProductDetailsPage={true} />
       {selectedHouse.length > 0 ? (
         <>
           <ProductCarousel />
