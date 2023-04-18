@@ -9,6 +9,15 @@ router.get('/advertise/getAll', houseController.getAllHouses);
 router.get('/advertise/:id', houseController.getHouseById);
 router.put('/advertise/:id', houseController.updateHouseById);
 router.put('/advertise/rating/:id', houseController.rateHouseById);
+router.put('/advertise/booking/:id', houseController.bookHouseById);
+router.put(
+  '/advertise/booking/reject/:id',
+  houseController.rejectBookingRequest
+);
+router.put(
+  '/advertise/booking/accept/:id',
+  houseController.acceptBookingRequest
+);
 router.delete('/advertise/:id', houseController.deleteHouseById);
 
 // get one

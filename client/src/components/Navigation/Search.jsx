@@ -5,7 +5,6 @@ import SearchBar from '../SearchBar/SearchBar';
 function Search() {
   const { houseList } = useSelector((state) => state.house);
 
-  // console.log(houseList);
   return (
     <>
       {houseList ? (

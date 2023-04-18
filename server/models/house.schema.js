@@ -13,12 +13,32 @@ const houseSchema = new Schema({
   sqft: Number,
   type: String,
   availableform: Date,
+  rentperday: Number,
+  renterId: {
+    type: String,
+    default: 'none',
+  },
   rating: [
     {
-      raterid: String,
+      raterid: {
+        type: String,
+        default: '0000',
+      },
       rate: {
         type: Number,
         default: 0,
+      },
+    },
+  ],
+  bookings: [
+    {
+      bookerid: {
+        type: String,
+        default: '00000',
+      },
+      bookingstatus: {
+        type: String,
+        default: 'none',
       },
     },
   ],
@@ -26,9 +46,9 @@ const houseSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  ispostapproved: {
+  isavailable: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   image: [
     {

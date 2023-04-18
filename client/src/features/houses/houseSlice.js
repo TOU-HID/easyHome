@@ -8,6 +8,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: '',
+  singleHouse: [],
 };
 
 export const addHouse = createAsyncThunk('houses/addHouse', async (data) => {
@@ -23,6 +24,14 @@ export const retriveAllHouses = createAsyncThunk(
 );
 export const retriveSelectedHouses = createAsyncThunk(
   'houses/retriveSelectedHouses',
+  async (houseId) => {
+    const selectedHouse = await getHousesByID(houseId);
+
+    return selectedHouse;
+  }
+);
+export const getSingleHouse = createAsyncThunk(
+  'houses/getSingleHouse',
   async (houseId) => {
     const selectedHouse = await getHousesByID(houseId);
 
@@ -87,6 +96,20 @@ const houseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(retriveSelectedHouses.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+      })
+      .addCase(getSingleHouse.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.singleHouse[0] = action.payload;
+      })
+      .addCase(getSingleHouse.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(getSingleHouse.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.error = action.error?.message;

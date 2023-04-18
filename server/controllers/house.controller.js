@@ -94,6 +94,115 @@ const rateHouseById = async (req, res) => {
     console.log(error);
   }
 };
+const bookHouseById = async (req, res) => {
+  // const houseId = req.params.id;
+  const houseId = req.params.id;
+  try {
+    const findHouse = await House.findById(houseId);
+    let isPresent = false;
+
+    // Can remove it later
+    // if (findHouse.bookings.length === 0) {
+    //   console.log('Empty');
+    //   await House.findByIdAndUpdate(
+    //     houseId,
+    //     {
+    //       $push: {
+    //         bookings: req.body,
+    //       },
+    //     },
+    //     {
+    //       new: true,
+    //     }
+    //   );
+    //   res.status(200).send({ status: '200', message: 'Bookign successful' });
+    // }
+
+    for (const elem of findHouse.bookings) {
+      if (elem.bookerid === req.body.bookerid) {
+        isPresent = true;
+        break;
+        // await House.findByIdAndUpdate(
+        //   houseId,
+        //   {
+        //     $push: {
+        //       bookings: req.body,
+        //     },
+        //   },
+        //   {
+        //     new: true,
+        //   }
+        // );
+        // res.status(200).send({ status: '200', message: 'Booking successful' });
+      }
+    }
+    if (!isPresent) {
+      await House.findByIdAndUpdate(
+        houseId,
+        {
+          $push: {
+            bookings: req.body,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+      res.status(200).send({ status: '200', message: 'Bookign successful' });
+    } else {
+      // throw new Error('cannot insert');
+      res.send('Cannot insert');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+const rejectBookingRequest = async (req, res) => {
+  // const houseId = req.params.id;
+  const houseId = req.params.id;
+  try {
+    // const findHouse = await House.findById(houseId);
+
+    await House.findByIdAndUpdate(
+      houseId,
+      {
+        $pull: {
+          bookings: { bookerid: req.body.bookerid },
+        },
+      },
+      {
+        new: true,
+      }
+    );
+
+    // res.status(200).send(updatedHouse.bookings);
+    res.status(200).send({ status: '200', message: 'rejected successfully' });
+
+    // getAllHouses()
+  } catch (error) {
+    console.log(error);
+  }
+};
+const acceptBookingRequest = async (req, res) => {
+  const houseId = req.params.id;
+  try {
+    const response = await House.updateOne(
+      {
+        _id: houseId,
+        'bookings.bookerid': req.body.bookerid,
+      },
+      {
+        $set: {
+          'bookings.$.bookingstatus': 'accepted',
+        },
+      }
+    );
+
+    res.send(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   createAdvertise,
   getAllHouses,
@@ -101,4 +210,7 @@ module.exports = {
   updateHouseById,
   deleteHouseById,
   rateHouseById,
+  bookHouseById,
+  rejectBookingRequest,
+  acceptBookingRequest,
 };

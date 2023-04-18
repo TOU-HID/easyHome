@@ -17,7 +17,28 @@ export const makeRating = async (id, data) => {
   const response = await axios.put(`${BASE_URL}/advertise/rating/${id}`, data);
   return response.data;
 };
-// export const loginUser = async (data) => {
-//   const response = await axios.post(`${BASE_URL}/user/login`, data);
-//   return response.data;
-// };
+export const makeBooking = async (id, data) => {
+  const response = await axios.put(`${BASE_URL}/advertise/booking/${id}`, data);
+  return response.data;
+};
+export const updatePosts = async (id, data) => {
+  console.log(id, data);
+  const response = await axios.put(`${BASE_URL}/advertise/${id}`, data);
+  return response.data;
+};
+export const rejectRequest = async (id, data) => {
+  console.log(id, data);
+  const response = await axios.put(
+    `${BASE_URL}/advertise/booking/reject/${id}`,
+    data
+  );
+  return response.data;
+};
+export const acceptRequest = async (id, data) => {
+  console.log(id, data);
+  const response = await axios.put(
+    `${BASE_URL}/advertise/booking/accept/${id}`,
+    data
+  );
+  return response.data;
+};

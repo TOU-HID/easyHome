@@ -31,7 +31,7 @@ function SearchBar({ data }) {
   };
 
   return (
-    <div className="search">
+    <div className="search flex flex-col  ">
       <div className="form-control  relative ">
         <input
           type="text"
@@ -76,34 +76,36 @@ function SearchBar({ data }) {
       {/* Result */}
       <div>
         {filteredData.length != 0 && (
-          <div className="bg-white w-[42vw] shadow-lg mt-3 rounded-xl flex flex-col gap-5">
-            {filteredData.slice(0, 5).map((house, index) => {
-              return (
-                <div key={index}>
-                  <div
-                    className="card  bg-base-100 shadow-xl cursor-pointer "
-                    onClick={() => handleClick(house._id)}
-                  >
-                    <div className="card-body">
-                      <div className="flex gap-10 justify-between">
-                        <div className="flex gap-4 items-center justify-between">
-                          <div className="text-xl font-semibold">
-                            {house.housename}{' '}
+          <div className="bg-[#FAF7F5] w-[40vw] shadow-lg mt-3 rounded-xl flex flex-col gap-3 absolute z-10 overflow-scroll h-48 right-[30vw] p-5 no-scrollbar overflow-y-auto">
+            {filteredData
+              .filter((house) => house.isavailable === true)
+              .map((house, index) => {
+                return (
+                  <div key={index}>
+                    <div
+                      className="card bg-base-100 shadow-xl cursor-pointer  "
+                      onClick={() => handleClick(house._id)}
+                    >
+                      <div className="card-body  ">
+                        <div className="flex gap-10 justify-between">
+                          <div className="flex gap-4 items-center justify-between">
+                            <div className="text-xl font-semibold">
+                              {house.housename}{' '}
+                            </div>
+                            <div className="text-md mt-1">
+                              <span>{house.area} </span>
+                              <span>{house.city} </span>
+                            </div>
                           </div>
-                          <div className="text-md mt-1">
-                            <span>{house.area} </span>
-                            <span>{house.city} </span>
+                          <div className="">
+                            <img src={house.image[0].url} width={100}></img>
                           </div>
-                        </div>
-                        <div className="">
-                          <img src={house.image[0].url} width={100}></img>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         )}
       </div>

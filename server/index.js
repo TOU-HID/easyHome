@@ -6,8 +6,15 @@ const houseRoute = require('./routes/house.route');
 const app = express();
 const PORT = 3001;
 const connect = require('./models/db.connection');
+const SSLCommerzPayment = require('sslcommerz');
+require('dotenv').config();
 
 app.use(bodyParser.json({ limit: '50mb' }));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 app.use(cors());
 app.use(express.json());
 app.use(userRouter);

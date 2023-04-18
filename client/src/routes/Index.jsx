@@ -8,13 +8,21 @@ import UserProfile from '../pages/UserProfile';
 import Protected from './Protected';
 import CreateProductForm from '../components/Products/CreateProductForm';
 import PortectedPost from './PortectedPost';
+import DateRange from '../components/DateRange';
+import OwnProductDetails from '../components/Admin/OwnProductDetails';
+import ProtectedOwneProterties from './ProtectedOwneProterties';
 
 function Index() {
   return (
     <BrowserRouter>
+      <DateRange />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/profile" element={<UserProfile />} />
+        {/* <Route
+          path="/profile/ownerProperties"
+          element={<OwnProductDetails />}
+        /> */}
 
         <Route
           path="/productDetails/:id"
@@ -30,6 +38,14 @@ function Index() {
             <PortectedPost>
               <CreateProductForm />
             </PortectedPost>
+          }
+        />
+        <Route
+          path="/profile/ownerProperties"
+          element={
+            <ProtectedOwneProterties>
+              <OwnProductDetails />
+            </ProtectedOwneProterties>
           }
         />
         <Route path="/*" element={<Error />} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { addHouse } from '../../features/houses/houseSlice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -19,11 +19,23 @@ function CreateProductForm() {
   const [rent, setRent] = useState('');
   const [bedroom, setBedroom] = useState('');
   const [bathroom, setBathroom] = useState('');
+  const [rentperday, setRentperday] = useState('');
   const [sqft, setSqft] = useState('');
   const [availableform, setAvailableform] = useState('');
   const [image, setImage] = useState([]);
 
   const [loading, setLoading] = useState(false);
+
+  const nevigate = useNavigate();
+  const handleDashboardClick = () => {
+    nevigate('/profile');
+  };
+  const handlePropertyClick = () => {
+    nevigate('/profile/ownerProperties');
+  };
+  const handlePostClick = () => {
+    nevigate('/post');
+  };
 
   const handleImage = (e) => {
     const files = Array.from(e.target.files);
@@ -50,6 +62,7 @@ function CreateProductForm() {
       type,
       availableform,
       image,
+      rentperday,
       postby: loggedInUsers[0]._id,
     };
     console.log(image.length);
@@ -73,6 +86,7 @@ function CreateProductForm() {
           setSqft('');
           setAvailableform('');
           setType('');
+          setRentperday('');
           toast.success('post successful');
         } else {
           setLoading(false);
@@ -89,68 +103,51 @@ function CreateProductForm() {
     <div>
       <NavigationBar />
 
-      <div>{type}</div>
-      <div className="flex ">
-        {/* Left SideBar */}
-        <div className="flex flex-col  p-3 bg-rose-500  shadow w-60 min-h-[90vh] ">
-          <div className="space-y-8">
-            <div className="flex items-center">
-              <h2 className="text-2xl text-white ml-5 mt-5">
-                Hey {loggedInUsers[0].userName.toUpperCase()}
-              </h2>
+      {/* <div>{type}</div> */}
+      <div className="flex mt-5 gap-10 ">
+        {/* Left Sidebar */}
+        <div className=" ml-16 w-[40vw] min-h-[85vh] rounded-xl bg-[#f4c8c8] pl-5  ">
+          <div className="text-2xl font-semibold justify-center flex mr-7 mt-8">
+            EASY HOME
+          </div>
+          <div className="mt-10 flex flex-col gap-5  text-[#0500c]">
+            <div>
+              <button
+                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
+                onClick={handleDashboardClick}
+              >
+                <div className="flex gap-2 items-center">
+                  <i className="fa-solid fa-briefcase"></i>
+                  <span>Dashboard</span>
+                </div>
+              </button>
             </div>
-
-            <div className="flex-1">
-              <ul className="pt-2 pb-4 space-y-5 text-sm">
-                <Link to="/post">
-                  <li className="rounded-sm hover:hover:bg-rose-600">
-                    <div className="flex items-center p-2 space-x-3 rounded-md">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 text-gray-100"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                        />
-                      </svg>
-                      <span className="text-gray-100">Post Advertisement</span>
-                    </div>
-                  </li>
-                </Link>
-
-                <Link to="/profile">
-                  <li className="rounded-sm  hover:hover:bg-rose-600">
-                    <div className="flex items-center p-2 space-x-3 rounded-md">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6 text-gray-100"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                        />
-                      </svg>
-                      <span className="text-gray-100">All Posts</span>
-                    </div>
-                  </li>
-                </Link>
-              </ul>
+            <div>
+              <button
+                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
+                onClick={handlePropertyClick}
+              >
+                <div className="flex gap-2 items-center">
+                  <i className="fa-solid fa-house"></i>
+                  <span>Properties</span>
+                </div>
+              </button>
+            </div>
+            <div>
+              <button
+                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
+                onClick={handlePostClick}
+              >
+                <div className="flex gap-2 items-center">
+                  <i className="fa-solid fa-address-card"></i>
+                  <span>Add listing</span>
+                </div>
+              </button>
             </div>
           </div>
         </div>
         {/* Form Container */}
-        <div className="container relative flex flex-col justify-center">
+        <div className="container relative flex flex-col justify-center rounded-2xl mr-96 bg-[#e8d5d577]">
           <div className=" p-6 m-auto rounded-md shadow-md mt-1">
             <h1 className="text-3xl  text-center text-gray-700 ">
               MAKE A POST
@@ -277,7 +274,7 @@ function CreateProductForm() {
                   />
                 </div>
               </div>
-              {/* Availavle form | Type */}
+              {/* Availavle form | Type | Rent per day*/}
               <div className="flex gap-5">
                 <div>
                   <label className="label">
@@ -309,7 +306,22 @@ function CreateProductForm() {
                     <option value="Villa">Villa</option>
                   </select>
                 </div>
+                <div>
+                  <label className="label">
+                    <span className="text-base label-text">Rent Per Day</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="EG: 700"
+                    min={1}
+                    className="input input-bordered rounded-md w-52"
+                    required
+                    onChange={(e) => setRentperday(e.target.value)}
+                    value={rentperday}
+                  />
+                </div>
               </div>
+
               {/* Image Upload */}
               <div>
                 <label className="label">

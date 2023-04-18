@@ -4,8 +4,12 @@ import moment from 'moment';
 import { fetchUserByid } from '../../features/users/userSlice';
 import ProductRating from './ProductRating';
 import RatingModla from './RatingModla';
+import { makeBooking } from '../../features/houses/houseAPI';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function ProductDetails() {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const { selectedHouse } = useSelector((state) => state.house);
   useEffect(() => {
@@ -13,9 +17,23 @@ function ProductDetails() {
   }, []);
 
   const { currentProductLandlord } = useSelector((state) => state.user);
+  const { loggedInUsers } = useSelector((state) => state.user);
 
   const handlePayment = () => {
-    alert('Make payment wuth ssl');
+    // alert('Your reservation is confirmed. Thank you');
+    const productId = id;
+    const bookingData = {
+      bookerid: loggedInUsers[0]._id,
+      bookingstatus: 'pending',
+    };
+
+    makeBooking(productId, bookingData).then((res) => {
+      if (res.status === '200') {
+        toast.success('Successfullt Reserved');
+      } else if (res.status === undefined) {
+        toast.error('You have already reserved once');
+      }
+    });
   };
 
   return (

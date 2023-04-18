@@ -5,13 +5,10 @@ import { fetchUser } from '../features/users/userSlice';
 import PostAlert from '../components/PostAlert';
 import Error from './Error';
 import NavigationBar from '../components/Navigation/NavigationBar';
-
+import LandlordDashboard from './LandlordDashboard';
 function UserProfile() {
   const { loggedInUsers } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
-  // dispatch(fetchUser());
-
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
@@ -21,8 +18,15 @@ function UserProfile() {
       <NavigationBar />
       {loggedInUsers.length > 0 ? (
         <>
-          {loggedInUsers[0].role === 'landlord' ? <PostAlert /> : <PostAlert />}
-          <Product />
+          {loggedInUsers[0].role === 'landlord' ? (
+            <>
+              <LandlordDashboard />
+            </>
+          ) : (
+            <>
+              <Product showAll={true} />
+            </>
+          )}
         </>
       ) : (
         <Error />
