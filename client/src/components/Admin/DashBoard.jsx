@@ -4,7 +4,7 @@ import { UNSAFE_DataRouterStateContext, useNavigate } from 'react-router-dom';
 import RentedPropertyCard from './RentedPropertyCard';
 import Barchart from '../Figures/Barchart';
 import moment from 'moment';
-
+import DoughnutJs from '../Figures/DoughnutJs';
 function DashBoard() {
   const { loggedInUsers } = useSelector((state) => state.user);
   const { houseList } = useSelector((state) => state.house);
@@ -12,6 +12,12 @@ function DashBoard() {
   const nevigate = useNavigate();
 
   const labels = houseList
+    .filter((house) => {
+      return house.postby === loggedInUsers[0]._id;
+    })
+    .filter((house) => {
+      return house.isbooked === true;
+    })
     .filter(
       (house) =>
         moment(house.availableform).format('MMMM').toLowerCase() ===
@@ -23,7 +29,14 @@ function DashBoard() {
     datasets: [
       {
         label: 'Monthly Income',
-        data: houseList.map((house) => house.rent),
+        data: houseList
+          .filter((house) => {
+            return house.postby === loggedInUsers[0]._id;
+          })
+          .filter((house) => {
+            return house.isbooked === true;
+          })
+          .map((house) => house.rent),
         // backgroundColor: 'rgba(255, 99, 132, 0.5)',
 
         backgroundColor: [
@@ -104,13 +117,13 @@ function DashBoard() {
           </div>
         </div>
         <div className="flex gap-5">
-          <div className="card bg-[#dfdfe1] w-[40vw] h-[41vh] bg-base-100 shadow-xl">
+          <div className="card bg-[#dfdfe1] w-[40vw] h-[50vh] bg-base-100 shadow-xl">
             <div className="card-body">
               <div className="relative">
-                <div className="w-[35vw] absolute ">
+                <div className="mt-5">
                   <Barchart chartData={chartData} />
                 </div>
-                <div className="absolute ml-[28vw]  bottom-[-15px] ">
+                <div className="absolute ml-[28vw]  bottom-[35vh] ">
                   <select
                     className="select w-[9vw] select-sm select-secondary max-w-xs "
                     onChange={(e) => setMonthname(e.target.value)}
@@ -136,10 +149,9 @@ function DashBoard() {
             </div>
           </div>
 
-          <div className="card bg-red-100 w-[25vw] h-[41vh] bg-base-100 shadow-xl">
+          <div className="card bg-red-100 w-[25vw] h-[50vh] bg-base-100 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title">Figure 2</h2>
-              <p>Figure 2</p>
+              <DoughnutJs />
             </div>
           </div>
 

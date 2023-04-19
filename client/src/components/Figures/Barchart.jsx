@@ -35,13 +35,9 @@ export const options = {
   },
   responsive: true,
   plugins: {
-    colors: {
-      enabled: true,
-    },
     legend: {
       position: 'top',
       display: false,
-      color: '#000000',
     },
 
     title: {

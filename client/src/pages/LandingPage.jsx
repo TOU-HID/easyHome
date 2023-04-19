@@ -7,10 +7,11 @@ import SecondHero from './SecondHero';
 
 function LandingPage() {
   return (
-    <div className="bg-[#F3F4F7]">
+    <div className="bg-[#EFEAE6]">
       <LandingNavbar />
       <HeroSection />
       <SecondHero Product={Product} />
+
       {/* <Product /> */}
     </div>
   );

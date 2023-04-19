@@ -3,7 +3,7 @@ import React from 'react';
 function RentedPropertyCard({ house }) {
   return (
     <div>
-      <div className="card bg-base-100 shadow-lg w-[65vw] bg-[#e3dac971]">
+      <div className="card bg-base-100 shadow-lg w-[66vw] bg-[#e3dac971]">
         <div className="flex justify-between p-6 items-center">
           <div className="flex gap-6">
             <div className="avatar">

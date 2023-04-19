@@ -87,7 +87,6 @@ function OwnProductDetails({ elem }) {
             })
 
             .map((house, i) => {
-              console.log(house.isavailable);
               return (
                 <>
                   <EachProductCard

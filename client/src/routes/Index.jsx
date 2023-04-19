@@ -11,7 +11,7 @@ import PortectedPost from './PortectedPost';
 import DateRange from '../components/DateRange';
 import OwnProductDetails from '../components/Admin/OwnProductDetails';
 import ProtectedOwneProterties from './ProtectedOwneProterties';
-
+import Footer from './../components/Footer';
 function Index() {
   return (
     <BrowserRouter>
@@ -50,6 +50,7 @@ function Index() {
         />
         <Route path="/*" element={<Error />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

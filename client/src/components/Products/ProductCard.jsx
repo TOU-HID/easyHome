@@ -12,7 +12,7 @@ function ProductCard({ house }) {
 
   return (
     <div className="card w-[20vw]  bg-base-100 shadow-md ">
-      <figure className="pt-2 pl-2 pr-2 h-[20vh]">
+      <figure className="h-[20vh] rounded-lg">
         <Link to={`/productDetails/${house._id}`}>
           <img
             src={house.image[0].url}

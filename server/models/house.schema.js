@@ -14,6 +14,7 @@ const houseSchema = new Schema({
   type: String,
   availableform: Date,
   rentperday: Number,
+  monthlyMaintenanceCost: Number,
   renterId: {
     type: String,
     default: 'none',

@@ -20,6 +20,7 @@ function CreateProductForm() {
   const [bedroom, setBedroom] = useState('');
   const [bathroom, setBathroom] = useState('');
   const [rentperday, setRentperday] = useState('');
+  const [monthlyMaintenanceCost, setMonthlyMaintenanceCost] = useState('');
   const [sqft, setSqft] = useState('');
   const [availableform, setAvailableform] = useState('');
   const [image, setImage] = useState([]);
@@ -63,6 +64,7 @@ function CreateProductForm() {
       availableform,
       image,
       rentperday,
+      monthlyMaintenanceCost,
       postby: loggedInUsers[0]._id,
     };
     console.log(image.length);
@@ -87,6 +89,7 @@ function CreateProductForm() {
           setAvailableform('');
           setType('');
           setRentperday('');
+          setMonthlyMaintenanceCost('');
           toast.success('post successful');
         } else {
           setLoading(false);
@@ -320,6 +323,24 @@ function CreateProductForm() {
                     value={rentperday}
                   />
                 </div>
+              </div>
+
+              {/* Monthly Maintenance Cost */}
+              <div>
+                <label className="label">
+                  <span className="text-base label-text">
+                    Monthly Maintenance Cost
+                  </span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="EG: 1500"
+                  min={1}
+                  className="input input-bordered rounded-md w-52"
+                  required
+                  onChange={(e) => setMonthlyMaintenanceCost(e.target.value)}
+                  value={monthlyMaintenanceCost}
+                />
               </div>
 
               {/* Image Upload */}

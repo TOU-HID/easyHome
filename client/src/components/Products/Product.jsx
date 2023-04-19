@@ -21,7 +21,7 @@ function Product({ showAll }) {
           <div className="flex gap-10 flex-wrap justify-start mt-[3vh]  mb-[5vh] ml-[5vw] ">
             {houseList
               .filter((house) => house.isavailable === true)
-              .slice(0, 3)
+              .slice(0, 4)
               .map((house, i) => {
                 return <ProductCard key={i} house={house} />;
               })}
