@@ -59,7 +59,7 @@ function DashBoard() {
     nevigate('/profile/ownerProperties');
   };
   const handlePostClick = () => {
-    nevigate('/post');
+    nevigate('/selectpost');
   };
 
   return (
@@ -154,13 +154,6 @@ function DashBoard() {
               <DoughnutJs />
             </div>
           </div>
-
-          {/* <div className="card bg-green-100 w-80 h-44 bg-base-100 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title">Figure 3</h2>
-              <p>Figure 3</p>
-            </div>
-          </div> */}
         </div>
         {/* For rent For sell  */}
         {houseList

@@ -11,7 +11,13 @@ import PortectedPost from './PortectedPost';
 import DateRange from '../components/DateRange';
 import OwnProductDetails from '../components/Admin/OwnProductDetails';
 import ProtectedOwneProterties from './ProtectedOwneProterties';
+import DailyPostForm from '../components/Products/DailyPostForm';
 import Footer from './../components/Footer';
+import PostOptions from '../components/Products/PostOptions';
+
+import DailyBasisUserProfile from '../pages/DailyBasisUserProfile';
+import DailybasisProductDetailsPage from './../pages/DailybasisProductDetailsPage';
+
 function Index() {
   return (
     <BrowserRouter>
@@ -19,10 +25,24 @@ function Index() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/profile" element={<UserProfile />} />
-        {/* <Route
-          path="/profile/ownerProperties"
-          element={<OwnProductDetails />}
-        /> */}
+
+        {/* // Need to be prtected */}
+        <Route
+          path="/dailyBasisHomes"
+          element={
+            <Protected>
+              <DailyBasisUserProfile />
+            </Protected>
+          }
+        />
+        <Route
+          path="/dailyBasisHomesDetails/:id"
+          element={
+            <Protected>
+              <DailybasisProductDetailsPage />
+            </Protected>
+          }
+        />
 
         <Route
           path="/productDetails/:id"
@@ -41,10 +61,27 @@ function Index() {
           }
         />
         <Route
+          path="/postDaily"
+          element={
+            <PortectedPost>
+              <DailyPostForm />
+            </PortectedPost>
+          }
+        />
+        <Route
           path="/profile/ownerProperties"
           element={
             <ProtectedOwneProterties>
               <OwnProductDetails />
+            </ProtectedOwneProterties>
+          }
+        />
+
+        <Route
+          path="/selectPost"
+          element={
+            <ProtectedOwneProterties>
+              <PostOptions />
             </ProtectedOwneProterties>
           }
         />

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { makeRating } from '../../features/houses/houseAPI';
+import { makeRatingDaillyHouse } from '../../features/dailyHouse/dailyHouseAPI';
 function RatingModla() {
   const { id } = useParams();
   const [rating, setRating] = useState(0);
@@ -29,6 +30,11 @@ function RatingModla() {
         // console.log(res);
         setRating(0);
         toast.success('Thanks for your rating');
+      });
+      makeRatingDaillyHouse(productId, ratingData).then((res) => {
+        // console.log(res);
+        setRating(0);
+        // toast.success('Thanks for your rating');
       });
     } else {
       // alert('No rating');

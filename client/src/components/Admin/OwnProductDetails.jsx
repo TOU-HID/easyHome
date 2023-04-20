@@ -17,7 +17,7 @@ function OwnProductDetails({ elem }) {
     nevigate('/profile/ownerProperties');
   };
   const handlePostClick = () => {
-    nevigate('/post');
+    nevigate('/selectpost');
   };
 
   return (

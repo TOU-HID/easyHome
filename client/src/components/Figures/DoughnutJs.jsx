@@ -16,7 +16,7 @@ export const options = {
 
     title: {
       display: true,
-      text: 'Your Monthly Income From Rented Properties',
+      text: 'Your Yearly Income From Rented Properties',
       color: '#000000',
     },
   },
@@ -73,7 +73,6 @@ function DoughnutJs() {
     labels: labels,
     datasets: [
       {
-        label: '# of Votes',
         data: yearlyRent,
         backgroundColor: [
           // '#C1311C',

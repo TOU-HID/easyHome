@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
-import { addHouse } from '../../features/houses/houseSlice';
+// import { addHouse } from '../../features/houses/houseSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavigationBar from '../Navigation/NavigationBar';
+import { addDailyHouse } from '../../features/dailyHouse/dailyHouseSlice';
 
-function CreateProductForm() {
+function DailyPostForm() {
   const dispatch = useDispatch();
 
   const { loggedInUsers } = useSelector((state) => state.user);
@@ -72,7 +73,7 @@ function CreateProductForm() {
       toast.error('You are allowed to select exectly 4 images');
       setLoading(false);
     } else {
-      dispatch(addHouse(houseDetails)).then((res) => {
+      dispatch(addDailyHouse(houseDetails)).then((res) => {
         // console.log(res.payload);
 
         if (res.payload !== undefined) {
@@ -174,15 +175,16 @@ function CreateProductForm() {
                 </div>
                 <div>
                   <label className="label">
-                    <span className="text-base label-text">Rent Per Month</span>
+                    <span className="text-base label-text">Rent Per Day</span>
                   </label>
                   <input
                     type="number"
-                    placeholder="EG: 15000"
-                    className=" input input-bordered rounded-md"
+                    placeholder="EG: 700"
+                    min={1}
+                    className="input input-bordered rounded-md w-52"
                     required
-                    onChange={(e) => setRent(e.target.value)}
-                    value={rent}
+                    onChange={(e) => setRentperday(e.target.value)}
+                    value={rentperday}
                   />
                 </div>
               </div>
@@ -309,7 +311,6 @@ function CreateProductForm() {
                     <option value="Villa">Villa</option>
                   </select>
                 </div>
-
                 {/* Monthly Maintenance Cost */}
                 <div>
                   <label className="label">
@@ -385,4 +386,4 @@ function CreateProductForm() {
   );
 }
 
-export default CreateProductForm;
+export default DailyPostForm;

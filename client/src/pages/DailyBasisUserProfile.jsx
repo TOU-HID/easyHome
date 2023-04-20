@@ -7,7 +7,8 @@ import ProfileOptions from '../components/ProfileOptions';
 import Error from './Error';
 import NavigationBar from '../components/Navigation/NavigationBar';
 import LandlordDashboard from './LandlordDashboard';
-function UserProfile() {
+
+function DailyBasisUserProfile() {
   const { loggedInUsers } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,7 +30,7 @@ function UserProfile() {
               <div className="mb-10">
                 <ProfileOptions />
               </div>
-              <Product showAll={true} />
+              <Product showAll={true} dailyBasis={true} />
             </>
           )}
         </>
@@ -40,4 +41,4 @@ function UserProfile() {
   );
 }
 
-export default UserProfile;
+export default DailyBasisUserProfile;
