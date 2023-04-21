@@ -7,5 +7,6 @@ router.post('/user', userController.createUser);
 router.post('/user/login', userController.login);
 router.get('/user/profile', authMiddleware, userController.getUserProfile);
 router.get('/user/:id', userController.getUserById);
+router.post('/google/user', userController.googleCreateUser);
 
 module.exports = router;

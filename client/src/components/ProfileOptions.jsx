@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function ProfileOptions() {
+function ProfileOptions({ userName }) {
   const navigate = useNavigate();
   const handleDailyBasis = () => {
     navigate('/dailyBasisHomes');
@@ -44,7 +44,7 @@ function ProfileOptions() {
           {/* Right side elements */}
           <div className="ml-24 mt-6 p-5 max-h-sm">
             <div>
-              <h1 className="text-4xl font-semibold">Welcome !</h1>
+              <h1 className="text-4xl font-semibold">Welcome {userName}!</h1>
               <p className="py-4 text-xl text-gray-600">
                 Outdoor adventures for every season. Cozy inside retreat for
                 every day.

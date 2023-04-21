@@ -19,6 +19,10 @@ export const creatUser = async (data) => {
   const response = await axios.post(`${BASE_URL}/user`, data);
   return response.data;
 };
+export const createAndGetGoogleUser = async (data) => {
+  const response = await axios.post(`${BASE_URL}/google/user`, data);
+  return response.data;
+};
 export const loginUser = async (data) => {
   const response = await axios.post(`${BASE_URL}/user/login`, data);
   return response.data;

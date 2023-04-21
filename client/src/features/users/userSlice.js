@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getUser, creatUser, loginUser, getUserByID } from './userAPI';
+import {
+  getUser,
+  creatUser,
+  loginUser,
+  getUserByID,
+  createAndGetGoogleUser,
+} from './userAPI';
 
 const initialState = {
   loggedInUsers: [],
@@ -28,6 +34,13 @@ export const fetchUserByid = createAsyncThunk(
   'users/fetchUserByid',
   async (id) => {
     const userInfo = await getUserByID(id);
+    return userInfo;
+  }
+);
+export const googleAddAndFetchUser = createAsyncThunk(
+  'users/googleAddAndFetchUser',
+  async (data) => {
+    const userInfo = await createAndGetGoogleUser(data);
     return userInfo;
   }
 );
@@ -61,6 +74,24 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.error?.message;
       })
+
+      // Google Auth
+      .addCase(googleAddAndFetchUser.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.loggedInUsers[0] = action.payload.data;
+        state.isAuthenticated = true;
+      })
+      .addCase(googleAddAndFetchUser.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(googleAddAndFetchUser.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+      })
+
       .addCase(login.pending, (state) => {
         state.isError = false;
         state.isLoading = true;

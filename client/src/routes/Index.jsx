@@ -24,7 +24,14 @@ function Index() {
       <DateRange />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/profile" element={<UserProfile />} />
+        <Route
+          path="/profile"
+          element={
+            <Protected>
+              <UserProfile />
+            </Protected>
+          }
+        />
 
         {/* // Need to be prtected */}
         <Route

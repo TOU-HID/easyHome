@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login, setIsAuthenticated } from '../../features/users/userSlice';
 import Swal from 'sweetalert2';
+import GoogleAuth from './GoogleAuth';
 
 function Login() {
   const navigate = useNavigate();
@@ -19,50 +20,35 @@ function Login() {
     setPassword('');
 
     // Post credientials
-    dispatch(login(userCredientials)).then(
-      (response) => {
-        // console.log(response.payload);
-        if (response.payload) {
-          const accessToken = response.payload.accessToken;
-          localStorage.setItem('accessToken', accessToken);
-          dispatch(setIsAuthenticated(true));
+    dispatch(login(userCredientials)).then((response) => {
+      // console.log(response.payload);
+      if (response.payload) {
+        const accessToken = response.payload.accessToken;
+        localStorage.setItem('accessToken', accessToken);
+        dispatch(setIsAuthenticated(true));
 
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Login Successful',
-            showConfirmButton: false,
-            timer: 1500,
-          }).then(navigate('/profile'));
-          // navigate('/profile');
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Incorrect email or password',
-          }).then(dispatch(setIsAuthenticated(false)));
-        }
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Login Successful',
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(navigate('/profile'));
+        // navigate('/profile');
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Incorrect email or password',
+        }).then(dispatch(setIsAuthenticated(false)));
       }
-      //  {
-      //    if (response.payload) {
-      //      const accessToken = response.payload.accessToken;
-      //      localStorage.setItem('accessToken', accessToken);
-      //      dispatch(setIsAuthenticated(true));
-      //      swal('sign up successful !').then(
-      //        (document.getElementById('my-modal-signup').checked = false)
-      //      );
-      //      auth.login(() => navigate('/productDetails'));
-      //    } else {
-      //      dispatch(setIsAuthenticated(false));
-      //    }
-      //  }
-    );
+    });
   }
   return (
     <div>
       <input type="checkbox" id="my-modal-login" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box h-[65vh] w-[30vw]">
+        <div className="modal-box h-[75vh] w-[30vw]">
           <div className="pt-5  text-3xl font-semibold flex justify-center">
             {' '}
             Login
@@ -75,7 +61,7 @@ function Login() {
           </label>
           <form
             action=""
-            className="flex flex-col gap-5 justify-center align-middle mt-10 p-10"
+            className="flex flex-col gap-5 justify-center align-middle mt-10 p-10 "
             onSubmit={handleSubmit}
           >
             <input
@@ -114,6 +100,12 @@ function Login() {
               {' '}
               Log In
             </button>
+
+            {/* Google auth */}
+            <div className="border-t-2 border-gray-400"></div>
+            <div>
+              <GoogleAuth />
+            </div>
           </form>
 
           {/* Login form submit */}
