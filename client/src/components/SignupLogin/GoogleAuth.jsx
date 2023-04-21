@@ -7,13 +7,13 @@ import { useDispatch } from 'react-redux';
 import { googleAddAndFetchUser } from '../../features/users/userSlice';
 import Swal from 'sweetalert2';
 
-function GoogleAuth() {
+function GoogleAuth({ width }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   return (
     <div>
-      <div className="">
+      <div>
         <GoogleOAuthProvider clientId="195127431392-am7f136teict4g6hn03qi09qpnre74at.apps.googleusercontent.com">
           <GoogleLogin
             onSuccess={(credentialResponse) => {
@@ -28,7 +28,7 @@ function GoogleAuth() {
                 role: 'renter',
               };
               // post data to user db
-              console.log(userCredientials);
+              // console.log(userCredientials);
 
               dispatch(googleAddAndFetchUser(userCredientials)).then(
                 (response) => {
@@ -61,8 +61,9 @@ function GoogleAuth() {
             onError={() => {
               console.log('Login Failed');
             }}
-            width={'330'}
-            auto_select={false}
+            width={width}
+            border={width}
+            // type={'icon'}
           />
         </GoogleOAuthProvider>
       </div>

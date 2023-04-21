@@ -9,6 +9,7 @@ import NavigationBar from '../components/Navigation/NavigationBar';
 import LandlordDashboard from './LandlordDashboard';
 function UserProfile() {
   const { loggedInUsers } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser());

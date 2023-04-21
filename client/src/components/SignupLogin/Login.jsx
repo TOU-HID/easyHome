@@ -48,7 +48,7 @@ function Login() {
     <div>
       <input type="checkbox" id="my-modal-login" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box h-[75vh] w-[30vw]">
+        <div className="modal-box h-[75vh] w-[30vw] no-scrollbar overflow-y-auto">
           <div className="pt-5  text-3xl font-semibold flex justify-center">
             {' '}
             Login
@@ -101,18 +101,25 @@ function Login() {
               Log In
             </button>
 
-            {/* Google auth */}
-            <div className="border-t-2 border-gray-400"></div>
-            <div>
-              <GoogleAuth />
+            {/* -----OR------ and Google auth */}
+
+            <div className="flex items-center ">
+              {/* <!-- The left line --> */}
+              <div className="flex-grow h-px bg-gray-400"></div>
+
+              {/* <!--  text  --> */}
+              <span className="flex-shrink text-sm text-gray-500 px-4 italic font-light">
+                OR
+              </span>
+
+              {/* <!-- The right line --> */}
+              <div className="flex-grow h-px bg-gray-400"></div>
+            </div>
+
+            <div className=" bg-white h-[3vw]">
+              <GoogleAuth width={'330'} />
             </div>
           </form>
-
-          {/* Login form submit */}
-          {/* <div>
-            {email}
-            {password}
-          </div> */}
         </div>
       </div>
     </div>

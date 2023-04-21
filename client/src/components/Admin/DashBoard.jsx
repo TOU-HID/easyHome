@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { UNSAFE_DataRouterStateContext, useNavigate } from 'react-router-dom';
+
 import RentedPropertyCard from './RentedPropertyCard';
 import Barchart from '../Figures/Barchart';
 import moment from 'moment';
 import DoughnutJs from '../Figures/DoughnutJs';
+
+import Leftsidebar from './Leftsidebar';
+import RentedPropertyDaily from './RentedPropertyDaily';
+
 function DashBoard() {
   const { loggedInUsers } = useSelector((state) => state.user);
   const { houseList } = useSelector((state) => state.house);
-  const [monthname, setMonthname] = useState('january');
-  const nevigate = useNavigate();
+  const { dailyHouseList } = useSelector((state) => state.dailyHouse);
 
+  const [monthname, setMonthname] = useState('january');
+  // NEED TO DISPATCH
+  // get DailyAllHOuse
+  // Monthly get All house
+
+  // For BarChart
   const labels = houseList
     .filter((house) => {
       return house.postby === loggedInUsers[0]._id;
@@ -52,60 +61,11 @@ function DashBoard() {
     ],
   };
 
-  const handleDashboardClick = () => {
-    nevigate('/profile');
-  };
-  const handlePropertyClick = () => {
-    nevigate('/profile/ownerProperties');
-  };
-  const handlePostClick = () => {
-    nevigate('/selectpost');
-  };
-
   return (
     <div className="flex gap-10 ml-20 mt-5">
       {/* <div>{monthname}</div> */}
       {/* Left Side */}
-      <div className=" w-72 min-h-[83vh] rounded-xl bg-[#f4c8c8] pl-5 ">
-        <div className="text-2xl font-semibold justify-center flex mr-7 mt-8">
-          EASY HOME
-        </div>
-        <div className="mt-10 flex flex-col gap-5  text-[#0500c] ">
-          <div>
-            <button
-              className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-              onClick={handleDashboardClick}
-            >
-              <div className="flex gap-2 items-center">
-                <i className="fa-solid fa-briefcase"></i>
-                <span>Dashboard</span>
-              </div>
-            </button>
-          </div>
-          <div>
-            <button
-              className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-              onClick={handlePropertyClick}
-            >
-              <div className="flex gap-2 items-center">
-                <i className="fa-solid fa-house"></i>
-                <span>Properties</span>
-              </div>
-            </button>
-          </div>
-          <div>
-            <button
-              className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-              onClick={handlePostClick}
-            >
-              <div className="flex gap-2 items-center">
-                <i className="fa-solid fa-address-card"></i>
-                <span>Add listing</span>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
+      <Leftsidebar />
 
       {/* // Right side */}
       <div className="flex flex-col gap-5 mt-3">
@@ -156,6 +116,8 @@ function DashBoard() {
           </div>
         </div>
         {/* For rent For sell  */}
+
+        {/* Monthly Daily */}
         {houseList
           .filter((house) => {
             return house.postby === loggedInUsers[0]._id;
@@ -168,6 +130,23 @@ function DashBoard() {
             return (
               <div key={i}>
                 <RentedPropertyCard house={house} />
+              </div>
+            );
+          })}
+
+        {/* Daily Basis */}
+        {dailyHouseList
+          .filter((house) => {
+            return house.postby === loggedInUsers[0]._id;
+          })
+
+          .filter((house) => {
+            return house.isbooked === true;
+          })
+          .map((house, i) => {
+            return (
+              <div key={i}>
+                <RentedPropertyDaily house={house} />
               </div>
             );
           })}

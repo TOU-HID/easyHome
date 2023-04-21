@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import NavigationBar from '../Navigation/NavigationBar';
-import EachProductCard from './EachProductCard';
+
 import { useDispatch, useSelector } from 'react-redux';
 import Leftsidebar from './Leftsidebar';
-import { retriveAllHouses } from '../../features/houses/houseSlice';
-
-function OwnProductDetails() {
+import EachProductCardDaily from './EachProductCardDaily';
+import { retriveAllDailyHouses } from '../../features/dailyHouse/dailyHouseSlice';
+function OwnProductDaily() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(retriveAllHouses());
-    // dispatch(retriveAllDailyHouses());
+    dispatch(retriveAllDailyHouses());
   }, []);
-  const { houseList } = useSelector((state) => state.house);
+
+  const { dailyHouseList } = useSelector((state) => state.dailyHouse);
   const { loggedInUsers } = useSelector((state) => state.user);
 
   return (
@@ -34,7 +34,7 @@ function OwnProductDetails() {
 
           {/* Each property cart */}
 
-          {houseList
+          {dailyHouseList
             .filter((house) => {
               return house.postby === loggedInUsers[0]._id;
             })
@@ -45,7 +45,7 @@ function OwnProductDetails() {
             .map((house, i) => {
               return (
                 <>
-                  <EachProductCard
+                  <EachProductCardDaily
                     house={house}
                     availablity={house.isavailable}
                   />
@@ -60,4 +60,4 @@ function OwnProductDetails() {
   );
 }
 
-export default OwnProductDetails;
+export default OwnProductDaily;

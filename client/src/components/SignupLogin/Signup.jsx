@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
+import GoogleAuth from './GoogleAuth';
 import { addUser, setIsAuthenticated } from '../../features/users/userSlice';
 
 function Signup() {
@@ -70,8 +70,8 @@ function Signup() {
   return (
     <div>
       <input type="checkbox" id="my-modal-signup" className="modal-toggle" />
-      <div className="modal ">
-        <div className="modal-box h-[100vh] w-[45vw]">
+      <div className="modal  ">
+        <div className="modal-box h-[110vh] w-[45vw] no-scrollbar overflow-y-auto">
           <div className="pt-5  text-3xl font-semibold flex justify-center ">
             {' '}
             Sign up
@@ -154,6 +154,25 @@ function Signup() {
               {' '}
               Sign Up
             </button>
+
+            {/* -----OR------ and Google auth */}
+
+            <div className="flex items-center ">
+              {/* <!-- The left line --> */}
+              <div className="flex-grow h-px bg-gray-400"></div>
+
+              {/* <!--  text  --> */}
+              <span className="flex-shrink text-sm text-gray-500 px-4 italic font-light">
+                OR
+              </span>
+
+              {/* <!-- The right line --> */}
+              <div className="flex-grow h-px bg-gray-400"></div>
+            </div>
+
+            <div className=" bg-white h-[3vw]">
+              <GoogleAuth width={'400'} />
+            </div>
           </form>
         </div>
       </div>

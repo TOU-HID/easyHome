@@ -62,12 +62,6 @@ function DoughnutJs() {
   );
   labels.push('Yearly total maintenance cost');
   yearlyRent.push(totalYearlyMaintanenceCost * 10);
-  console.log(labels);
-  //   console.log(monthlyMaintanenceCost);
-  //   console.log(monthlyRent);
-  console.log(yearlyRent);
-  //   console.log(yearlyMaintanenceCost);
-  //   console.log(totalYearlyMaintanenceCost);
 
   const data = {
     labels: labels,

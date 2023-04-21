@@ -101,39 +101,10 @@ const bookHouseById = async (req, res) => {
     const findHouse = await DailyHouse.findById(houseId);
     let isPresent = false;
 
-    // Can remove it later
-    // if (findHouse.bookings.length === 0) {
-    //   console.log('Empty');
-    //   await DailyHouse.findByIdAndUpdate(
-    //     houseId,
-    //     {
-    //       $push: {
-    //         bookings: req.body,
-    //       },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   );
-    //   res.status(200).send({ status: '200', message: 'Bookign successful' });
-    // }
-
     for (const elem of findHouse.bookings) {
       if (elem.bookerid === req.body.bookerid) {
         isPresent = true;
         break;
-        // await DailyHouse.findByIdAndUpdate(
-        //   houseId,
-        //   {
-        //     $push: {
-        //       bookings: req.body,
-        //     },
-        //   },
-        //   {
-        //     new: true,
-        //   }
-        // );
-        // res.status(200).send({ status: '200', message: 'Booking successful' });
       }
     }
     if (!isPresent) {

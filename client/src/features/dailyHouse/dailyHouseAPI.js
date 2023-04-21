@@ -24,6 +24,7 @@ export const makeBooking = async (id, data) => {
   );
   return response.data;
 };
+
 export const updatePosts = async (id, data) => {
   console.log(id, data);
   const response = await axios.put(`${BASE_URL}/dailyhouse/${id}`, data);

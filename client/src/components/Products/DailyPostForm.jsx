@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
-// import { addHouse } from '../../features/houses/houseSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavigationBar from '../Navigation/NavigationBar';
 import { addDailyHouse } from '../../features/dailyHouse/dailyHouseSlice';
+import Leftsidebar from '../Admin/Leftsidebar';
 
 function DailyPostForm() {
   const dispatch = useDispatch();
@@ -27,17 +26,6 @@ function DailyPostForm() {
   const [image, setImage] = useState([]);
 
   const [loading, setLoading] = useState(false);
-
-  const nevigate = useNavigate();
-  const handleDashboardClick = () => {
-    nevigate('/profile');
-  };
-  const handlePropertyClick = () => {
-    nevigate('/profile/ownerProperties');
-  };
-  const handlePostClick = () => {
-    nevigate('/selectpost');
-  };
 
   const handleImage = (e) => {
     const files = Array.from(e.target.files);
@@ -111,44 +99,7 @@ function DailyPostForm() {
       <div className="flex mt-5 gap-10 ">
         {/* Left Sidebar */}
         <div className=" ml-16 w-[40vw] min-h-[85vh] rounded-xl bg-[#f4c8c8] pl-5  ">
-          <div className="text-2xl font-semibold justify-center flex mr-7 mt-8">
-            EASY HOME
-          </div>
-          <div className="mt-10 flex flex-col gap-5  text-[#0500c]">
-            <div>
-              <button
-                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-                onClick={handleDashboardClick}
-              >
-                <div className="flex gap-2 items-center">
-                  <i className="fa-solid fa-briefcase"></i>
-                  <span>Dashboard</span>
-                </div>
-              </button>
-            </div>
-            <div>
-              <button
-                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-                onClick={handlePropertyClick}
-              >
-                <div className="flex gap-2 items-center">
-                  <i className="fa-solid fa-house"></i>
-                  <span>Properties</span>
-                </div>
-              </button>
-            </div>
-            <div>
-              <button
-                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-                onClick={handlePostClick}
-              >
-                <div className="flex gap-2 items-center">
-                  <i className="fa-solid fa-address-card"></i>
-                  <span>Add listing</span>
-                </div>
-              </button>
-            </div>
-          </div>
+          <Leftsidebar />
         </div>
         {/* Form Container */}
         <div className="container relative flex flex-col justify-center rounded-2xl mr-96 bg-[#e8d5d577]">

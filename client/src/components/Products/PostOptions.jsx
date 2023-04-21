@@ -6,20 +6,13 @@ import { addHouse } from '../../features/houses/houseSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavigationBar from '../Navigation/NavigationBar';
+import Leftsidebar from '../Admin/Leftsidebar';
 
 function PostOptions() {
   const [loading, setLoading] = useState(false);
 
   const nevigate = useNavigate();
-  const handleDashboardClick = () => {
-    nevigate('/profile');
-  };
-  const handlePropertyClick = () => {
-    nevigate('/profile/ownerProperties');
-  };
-  const handlePostClick = () => {
-    nevigate('/selectpost');
-  };
+
   const handleDailyClick = () => {
     nevigate('/postDaily');
   };
@@ -33,44 +26,7 @@ function PostOptions() {
       <div className="flex mt-5 gap-10 ">
         {/* Left Sidebar */}
         <div className=" ml-16 w-[30vw] min-h-[85vh] rounded-xl bg-[#f4c8c8] pl-4  ">
-          <div className="text-2xl font-semibold justify-center flex mr-8 mt-8">
-            EASY HOME
-          </div>
-          <div className="mt-10 flex flex-col gap-5  text-[#0500c]">
-            <div>
-              <button
-                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-                onClick={handleDashboardClick}
-              >
-                <div className="flex gap-2 items-center">
-                  <i className="fa-solid fa-briefcase"></i>
-                  <span>Dashboard</span>
-                </div>
-              </button>
-            </div>
-            <div>
-              <button
-                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-                onClick={handlePropertyClick}
-              >
-                <div className="flex gap-2 items-center">
-                  <i className="fa-solid fa-house"></i>
-                  <span>Properties</span>
-                </div>
-              </button>
-            </div>
-            <div>
-              <button
-                className="btn btn-ghost text-lg w-60 hover:bg-rose-500 hover:text-white"
-                onClick={handlePostClick}
-              >
-                <div className="flex gap-2 items-center">
-                  <i className="fa-solid fa-address-card"></i>
-                  <span>Add listing</span>
-                </div>
-              </button>
-            </div>
-          </div>
+          <Leftsidebar />
         </div>
         {/* Form Container */}
         <div className="container flex gap-16 mt-[10vh] ml-[6vw]">
@@ -83,7 +39,7 @@ function PostOptions() {
 
               <div className="card-actions justify-center">
                 <button
-                  className="btn btn-ghost bg-rose-500 text-white mt-3 hover:bg-rose-600"
+                  className="btn btn-ghost btn-sm  text-black mt-4 hover:bg-rose-600"
                   onClick={handleDailyClick}
                 >
                   Press here
@@ -101,7 +57,7 @@ function PostOptions() {
 
               <div className="card-actions justify-center">
                 <button
-                  className="btn btn-ghost bg-rose-500 text-white mt-3 hover:bg-rose-600"
+                  className="btn btn-ghost btn-sm  text-black mt-3 hover:bg-rose-600"
                   onClick={handleMonthlyClick}
                 >
                   Press here

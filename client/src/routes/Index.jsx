@@ -18,6 +18,8 @@ import PostOptions from '../components/Products/PostOptions';
 import DailyBasisUserProfile from '../pages/DailyBasisUserProfile';
 import DailybasisProductDetailsPage from './../pages/DailybasisProductDetailsPage';
 
+import OwnProductDaily from '../components/Admin/OwnProductDaily';
+
 function Index() {
   return (
     <BrowserRouter>
@@ -76,10 +78,18 @@ function Index() {
           }
         />
         <Route
-          path="/profile/ownerProperties"
+          path="/profile/ownerPropertiesMonthly"
           element={
             <ProtectedOwneProterties>
               <OwnProductDetails />
+            </ProtectedOwneProterties>
+          }
+        />
+        <Route
+          path="/profile/ownerPropertiesDaily"
+          element={
+            <ProtectedOwneProterties>
+              <OwnProductDaily />
             </ProtectedOwneProterties>
           }
         />

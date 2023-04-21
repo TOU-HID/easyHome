@@ -2,8 +2,9 @@ import React from 'react';
 
 function RentedPropertyCard({ house }) {
   return (
+    // bg-[#e3dac971]
     <div>
-      <div className="card bg-base-100 shadow-lg w-[66vw] bg-[#e3dac971]">
+      <div className="card bg-base-100 shadow-lg w-[66vw] bg-[#d6e9ca92]">
         <div className="flex justify-between p-6 items-center">
           <div className="flex gap-6">
             <div className="avatar">
@@ -28,7 +29,7 @@ function RentedPropertyCard({ house }) {
 
                 <i className="fa-solid fa-circle fa-sm text-green-500"></i>
 
-                <span className="label-text ml-2 text-lg">Rented</span>
+                <span className="label-text ml-2 text-lg">Rented Monthly</span>
               </label>
             </div>
           </div>
