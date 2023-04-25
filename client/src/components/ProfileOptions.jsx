@@ -12,11 +12,11 @@ function ProfileOptions({ userName }) {
   };
   return (
     <div className="">
-      <div className="hero min-h-[50vh] bg-base-200">
-        <div className="flex gap-10 mr-80 ">
-          <div className="ml-16 ">
+      <div className="min-h-[50vh] bg-base-200">
+        <div className="flex ">
+          <div className="ml-16 m-5">
             {/* carosoul */}
-            <div className="min-w-[28vw] h-[44vh] carousel rounded-box">
+            <div className="max-w-[34vw] h-[44vh] carousel rounded-box">
               <div className="carousel-item w-full">
                 <img
                   src="https://res.cloudinary.com/dqgdpbbtv/image/upload/v1681882749/houses/s410jqw2widki7egw4rr.png"
@@ -51,43 +51,47 @@ function ProfileOptions({ userName }) {
               </p>
             </div>
 
-            <div className="flex gap-8 mt-5">
+            <div className="flex gap-8 mt-10">
               <div>
-                <div className="card w-80 h-40 shadow-xl bg-[#c9c3b966] ">
-                  <div className="card-body  gap-5">
-                    <h2 className="card-title justify-center">
-                      Rent On Daily Basis ?
-                    </h2>
+                {/* <div className="card w-80 h-40 shadow-xl bg-[#c9c3b966] ">
+                  <div className="card-body  gap-5  ">
+                    <h2 className="card-title justify-center">Rent On</h2>
 
                     <div className="card-actions justify-center">
                       <button
-                        className="btn mt-3 btn-sm btn-ghost bg-rose-500 text-white hover:bg-rose-600"
+                        className="btn btn-sm btn-ghost bg-rose-500 text-white hover:bg-rose-600"
                         onClick={handleDailyBasis}
                       >
                         press here
                       </button>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div>
-                <div className="card w-80 h-40  shadow-xl bg-[#e4d5c452]">
-                  <div className="card-body gap-4">
-                    <h2 className="card-title justify-center">
-                      Rent On Monthly Basis ?
-                    </h2>
+                </div> */}
 
-                    <div className="card-actions justify-center">
-                      <button
-                        className="btn mt-3  btn-sm  btn-ghost bg-rose-500 text-white hover:bg-rose-600"
-                        onClick={handleMonthlyBasis}
-                      >
-                        press here
-                      </button>
-                    </div>
-                  </div>
+                <div className="text-3xl font-semibold flex items-center gap-2">
+                  Rent on
+                  <span>
+                    <button
+                      className="btn btn-sm btn-ghost bg-rose-500 text-white hover:bg-rose-600"
+                      onClick={handleDailyBasis}
+                    >
+                      Daily
+                    </button>
+                  </span>
+                  <span>/</span>
+                  <span>
+                    <button
+                      className="btn btn-sm btn-ghost bg-rose-500 text-white hover:bg-rose-600"
+                      onClick={handleMonthlyBasis}
+                    >
+                      Monthly
+                    </button>
+                  </span>{' '}
+                  basis ?
                 </div>
               </div>
+
+              <div></div>
             </div>
           </div>
         </div>
