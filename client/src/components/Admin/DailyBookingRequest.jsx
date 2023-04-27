@@ -8,6 +8,7 @@ import {
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { retriveAllDailyHouses } from '../../features/dailyHouse/dailyHouseSlice';
+import moment from 'moment';
 
 function DailyBookingRequest({ house, bookerid }) {
   const [booker, setBooker] = useState();
@@ -72,13 +73,24 @@ function DailyBookingRequest({ house, bookerid }) {
       }
     });
   };
+
+  let from = moment([
+    Number(house.bookings[0].bookingForm.slice(0, 4)),
+    Number(house.bookings[0].bookingForm.slice(5, 7)),
+    Number(house.bookings[0].bookingForm.slice(8, 10)),
+  ]);
+  let to = moment([
+    Number(house.bookings[0].bookingTo.slice(0, 4)),
+    Number(house.bookings[0].bookingTo.slice(5, 7)),
+    Number(house.bookings[0].bookingTo.slice(8, 10)),
+  ]);
   return (
     <div>
       {booker ? (
         <>
           <div className="card mt-5 bg-base-100 shadow-lg w-[56vw] bg-[#daaaa64a]">
             <div className="flex justify-between p-6 items-center">
-              <div className="flex gap-8">
+              <div className="flex gap-8 ">
                 <div className="avatar">
                   <div className="w-16 rounded">
                     <img src="https://www.w3schools.com/howto/img_avatar.png" />
@@ -90,7 +102,7 @@ function DailyBookingRequest({ house, bookerid }) {
                 </div>
               </div>
 
-              <div className="flex gap-3 ">
+              {/* <div className="flex gap-3 ">
                 <span className="flex gap-1 items-center">
                   <i className="fa-solid fa-bed"></i>
                   <span>{house.bedroom}</span>
@@ -100,14 +112,35 @@ function DailyBookingRequest({ house, bookerid }) {
                   <span>{house.bathroom}</span>
                 </span>
                 <span> {house.sqft + ' sqft'} </span>
-              </div>
+              </div> */}
 
-              <div>
+              {/* <div>
                 <span className="font-bold text-lg">
                   <i className="fa-solid fa-bangladeshi-taka-sign"></i>
                   {house.rent}
                 </span>
                 <span className="text-md">/month</span>
+              </div> */}
+
+              <div className="flex gap-3 text-lg ">
+                <span className="underline text-green-900 font-bold">
+                  {moment(house.bookings[0].bookingForm).format('MMMM Do YYYY')}
+                </span>
+                <span className="font-bold"> ▶ </span>
+                <span className="underline text-red-900 font-bold">
+                  {moment(house.bookings[0].bookingTo).format('MMMM Do YYYY')}
+                </span>
+              </div>
+              <div className="flex gap-1 font-bold text-xl text-gray-900 items-center">
+                <span className="text-md "> {to.diff(from, 'days')}</span>
+                <span className="text-md ">days</span>
+              </div>
+
+              <div className="flex gap-2  mt-1">
+                <div className="font-bold text-lg ">
+                  <i className="fa-solid fa-bangladeshi-taka-sign"></i>
+                  {house.bookings[0].totalCost}
+                </div>
               </div>
 
               <div className="flex flex-col gap-4">

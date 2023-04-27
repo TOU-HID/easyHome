@@ -117,7 +117,7 @@ function DashBoard() {
         </div>
         {/* For rent For sell  */}
 
-        {/* Monthly Daily */}
+        {/* Monthly Basis */}
         {houseList
           .filter((house) => {
             return house.postby === loggedInUsers[0]._id;

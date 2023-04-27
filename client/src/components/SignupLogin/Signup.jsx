@@ -170,7 +170,7 @@ function Signup() {
               <div className="flex-grow h-px bg-gray-400"></div>
             </div>
 
-            <div className=" bg-white h-[3vw]">
+            <div className="">
               <GoogleAuth width={'400'} />
             </div>
           </form>

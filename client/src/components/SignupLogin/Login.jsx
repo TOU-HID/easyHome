@@ -116,7 +116,7 @@ function Login() {
               <div className="flex-grow h-px bg-gray-400"></div>
             </div>
 
-            <div className=" bg-white h-[3vw]">
+            <div className="">
               <GoogleAuth width={'330'} />
             </div>
           </form>
