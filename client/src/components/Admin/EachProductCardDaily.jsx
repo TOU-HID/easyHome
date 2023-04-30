@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { updatePosts } from '../../features/dailyHouse/dailyHouseAPI';
 import DailyBookingRequest from './DailyBookingRequest';
 
-function EachProductCardDaily({ house, availablity }) {
+function EachProductCardDaily({ house, availablity, socket }) {
   const bookingList = house.bookings;
   const [isAvailable, setIsAvailable] = useState(availablity);
   const handleAvailablityToggle = () => {
@@ -64,6 +64,7 @@ function EachProductCardDaily({ house, availablity }) {
                       <DailyBookingRequest
                         house={house}
                         bookerid={booking.bookerid}
+                        socket={socket}
                       />
                     </div>
                   );

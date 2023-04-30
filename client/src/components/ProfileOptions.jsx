@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setNotification } from './../features/users/userSlice';
+import { io } from 'socket.io-client';
 
 function ProfileOptions({ userName }) {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
+  const [socket, setSocket] = useState(null);
+  // const [notifications, setNotifications] = useState([]);
+  const { loggedInUsers, allNotifications } = useSelector((state) => state.user);
+
+
+  useEffect(() => {
+    const socket = new io('http://localhost:3001', {
+      autoConnect: false,
+      withCredentials: true
+    })
+    socket.connect();
+    setSocket(socket)
+    console.log(socket);
+    socket.on('firstEmit', (data) => {
+      console.log(data)
+    })
+  }, []);
+
+  useEffect(() => {
+    socket?.emit('newUser', loggedInUsers[0]._id)
+  }, [socket, loggedInUsers])
+
+  useEffect(() => {
+    socket?.on('getNotification', (data) => {
+      // setNotifications(pre => [...pre, data])
+      dispatch(setNotification({
+        notification: data
+      }))
+    })
+  }, [dispatch, socket])
+  console.log(allNotifications);
+
   const handleDailyBasis = () => {
     navigate('/dailyBasisHomes');
   };

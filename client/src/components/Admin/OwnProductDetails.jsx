@@ -1,18 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Navigation/NavigationBar';
 import EachProductCard from './EachProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import Leftsidebar from './Leftsidebar';
 import { retriveAllHouses } from '../../features/houses/houseSlice';
+import { io } from 'socket.io-client';
 
 function OwnProductDetails() {
   const dispatch = useDispatch();
+  const [socket, setSocket] = useState(null);
+
   useEffect(() => {
     dispatch(retriveAllHouses());
     // dispatch(retriveAllDailyHouses());
   }, []);
   const { houseList } = useSelector((state) => state.house);
   const { loggedInUsers } = useSelector((state) => state.user);
+  console.log(loggedInUsers);
+
+  useEffect(() => {
+    const socket = new io('http://localhost:3001', {
+      autoConnect: false,
+      withCredentials: true
+    })
+    socket.connect();
+    setSocket(socket)
+    console.log(socket);
+    // socket.on('firstEmit', (data) => {
+    //   console.log(data)
+    // })
+  }, []);
+
+  useEffect(() => {
+    socket?.emit('newUser', loggedInUsers[0]._id)
+  }, [socket])
 
   return (
     <div>
@@ -48,6 +69,7 @@ function OwnProductDetails() {
                   <EachProductCard
                     house={house}
                     availablity={house.isavailable}
+                    socket={socket}
                   />
                 </>
               );

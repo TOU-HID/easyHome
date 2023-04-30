@@ -5,14 +5,15 @@ import {
   acceptRequest,
   updatePosts,
 } from './../../features/dailyHouse/dailyHouseAPI';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { retriveAllDailyHouses } from '../../features/dailyHouse/dailyHouseSlice';
 import moment from 'moment';
 
-function DailyBookingRequest({ house, bookerid }) {
+function DailyBookingRequest({ house, bookerid, socket }) {
   const [booker, setBooker] = useState();
   const dispatch = useDispatch();
+  const { loggedInUsers } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (bookerid !== undefined) {
@@ -48,6 +49,13 @@ function DailyBookingRequest({ house, bookerid }) {
         updatePosts(house._id, essentials);
 
         dispatch(retriveAllDailyHouses());
+      } else {
+        const data = { bookerid: bookerid };
+        socket.emit('sendNotification', {
+          sender: loggedInUsers[0],
+          receiverId: data.bookerid,
+          message: 'Your daily booking is accepted'
+        })
       }
     });
   };
@@ -70,6 +78,13 @@ function DailyBookingRequest({ house, bookerid }) {
           console.log(res);
         });
         dispatch(retriveAllDailyHouses());
+      } else {
+        const data = { bookerid: bookerid };
+        socket.emit('sendNotification', {
+          sender: loggedInUsers[0],
+          receiverId: data.bookerid,
+          message: 'Your daily booking is rejected'
+        })
       }
     });
   };

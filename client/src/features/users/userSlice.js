@@ -15,6 +15,7 @@ const initialState = {
   error: '',
   isAuthenticated: false,
   currentProductLandlord: [],
+  allNotifications: [],
 };
 
 export const addUser = createAsyncThunk('user/addUser', async (data) => {
@@ -55,6 +56,9 @@ const userSlice = createSlice({
     },
     setLoggedInUsers: (state, action) => {
       state.loggedInUsers = action.payload;
+    },
+    setNotification: (state, action) => {
+      state.allNotifications.push(action.payload.notification);
     },
   },
 
@@ -141,4 +145,5 @@ const userSlice = createSlice({
   },
 });
 export default userSlice.reducer;
-export const { setIsAuthenticated, setLoggedInUsers } = userSlice.actions;
+export const { setIsAuthenticated, setLoggedInUsers, setNotification } =
+  userSlice.actions;

@@ -5,23 +5,27 @@ import {
   acceptRequest,
   updatePosts,
 } from './../../features/houses/houseAPI';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { retriveAllHouses } from '../../features/houses/houseSlice';
 import Swal from 'sweetalert2';
+import { io } from 'socket.io-client';
 
-function BookingRequest({ house, bookerid }) {
+function BookingRequest({ house, bookerid, socket }) {
   const [booker, setBooker] = useState();
   const dispatch = useDispatch();
+  const { loggedInUsers } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (bookerid !== undefined) {
       //   console.log(bookerid);
       getUserByID(bookerid).then((res) => {
-        // console.log(res);
+        console.log(res);
         setBooker(res);
       });
     }
   }, []);
+
+
 
   const handleAccept = () => {
     Swal.fire({
@@ -47,9 +51,17 @@ function BookingRequest({ house, bookerid }) {
         updatePosts(house._id, essentials);
 
         dispatch(retriveAllHouses());
+      } else {
+        const data = { bookerid: bookerid };
+        socket.emit('sendNotification', {
+          sender: loggedInUsers[0],
+          receiverId: data.bookerid,
+          message: 'Your booking is accepted'
+        })
       }
     });
   };
+
   const handleReject = () => {
     // alert('sure to Rejected');
     // reject
@@ -69,9 +81,17 @@ function BookingRequest({ house, bookerid }) {
           console.log(res);
         });
         dispatch(retriveAllHouses());
+      } else {
+        const data = { bookerid: bookerid };
+        socket.emit('sendNotification', {
+          sender: loggedInUsers[0],
+          receiverId: data.bookerid,
+          message: 'Your booking is rejected'
+        })
       }
     });
   };
+
   return (
     <div>
       {booker ? (

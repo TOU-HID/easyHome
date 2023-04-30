@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import BookingRequest from './BookingRequest';
 import { updatePosts } from '../../features/houses/houseAPI';
 
-function EachProductCard({ house, availablity }) {
+function EachProductCard({ house, availablity, socket }) {
   const bookingList = house.bookings;
   const [isAvailable, setIsAvailable] = useState(availablity);
   const handleAvailablityToggle = () => {
@@ -63,6 +63,7 @@ function EachProductCard({ house, availablity }) {
                       <BookingRequest
                         house={house}
                         bookerid={booking.bookerid}
+                        socket={socket}
                       />
                     </div>
                   );

@@ -7,10 +7,11 @@ import ProfileOptions from '../components/ProfileOptions';
 import Error from './Error';
 import NavigationBar from '../components/Navigation/NavigationBar';
 import LandlordDashboard from './LandlordDashboard';
+
 function UserProfile() {
+  const dispatch = useDispatch();
   const { loggedInUsers } = useSelector((state) => state.user);
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser());
   }, []);

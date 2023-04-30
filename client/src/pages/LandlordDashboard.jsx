@@ -8,6 +8,9 @@ import { retriveAllDailyHouses } from '../features/dailyHouse/dailyHouseSlice';
 
 function LandlordDashboard() {
   const dispatch = useDispatch();
+  const { houseList } = useSelector((state) => state.house);
+  const { dailyHouseList } = useSelector((state) => state.dailyHouse);
+
   useEffect(() => {
     dispatch(retriveAllHouses());
     dispatch(retriveAllDailyHouses());
@@ -17,8 +20,6 @@ function LandlordDashboard() {
   // get DailyAllHOuse
   // Monthly get All house
 
-  const { houseList } = useSelector((state) => state.house);
-  const { dailyHouseList } = useSelector((state) => state.dailyHouse);
   return (
     <div>
       {houseList.length && dailyHouseList.length > 0 ? (
@@ -28,7 +29,7 @@ function LandlordDashboard() {
           </div>
         </div>
       ) : (
-        <></>
+        <><DashBoard /></>
       )}
     </div>
   );

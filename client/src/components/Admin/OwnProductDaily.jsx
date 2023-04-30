@@ -1,18 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Navigation/NavigationBar';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Leftsidebar from './Leftsidebar';
 import EachProductCardDaily from './EachProductCardDaily';
 import { retriveAllDailyHouses } from '../../features/dailyHouse/dailyHouseSlice';
+import { io } from 'socket.io-client';
+
 function OwnProductDaily() {
   const dispatch = useDispatch();
+  const [socket, setSocket] = useState(null);
+  const { dailyHouseList } = useSelector((state) => state.dailyHouse);
+  const { loggedInUsers } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const socket = new io('http://localhost:3001', {
+      autoConnect: false,
+      withCredentials: true
+    })
+    socket.connect();
+    setSocket(socket)
+    console.log(socket);
+    // socket.on('firstEmit', (data) => {
+    //   console.log(data)
+    // })
+  }, []);
+
+  useEffect(() => {
+    socket?.emit('newUser', loggedInUsers[0]._id)
+  }, [socket])
+
   useEffect(() => {
     dispatch(retriveAllDailyHouses());
   }, []);
 
-  const { dailyHouseList } = useSelector((state) => state.dailyHouse);
-  const { loggedInUsers } = useSelector((state) => state.user);
 
   return (
     <div>
@@ -48,6 +69,7 @@ function OwnProductDaily() {
                   <EachProductCardDaily
                     house={house}
                     availablity={house.isavailable}
+                    socket={socket}
                   />
                 </>
               );
