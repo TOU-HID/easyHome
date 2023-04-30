@@ -5,16 +5,16 @@ import { setFilterStates } from "./../../features/filter/filterSlice";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
-  const [location, setLocation] = useState('');
-  const [rentType, setRentType] = useState('daily');
+  const [location, setLocation] = useState("");
+  const [rentType, setRentType] = useState("daily");
   const [price, setPrice] = useState({
     minPrice: 0,
     maxPrice: 2000,
   });
   const [rooms, setRooms] = useState(1);
   const [date, setDate] = useState({
-    startDate: new Date(),
-    endDate: new Date().setMonth(11),
+    startDate: null,
+    endDate: null,
   });
 
   const handleDateChange = (newDate) => {
@@ -42,11 +42,11 @@ const SearchBox = () => {
       location: location,
       date: date,
       price: price,
-      rooms: rooms
-    }
+      rooms: rooms,
+    };
     console.log(filterStates);
-    dispatch(setFilterStates({ filterStates }))
-  }
+    dispatch(setFilterStates({ filterStates }));
+  };
 
   return (
     <div
@@ -62,24 +62,42 @@ const SearchBox = () => {
           <div className="card bg-base-100 shadow-xl h-60">
             <div className="card-body w-full items-center">
               <div className="tabs justify-center mb-2">
-                <span className={`tab tab-bordered ${rentType == 'daily' ? 'tab-active' : null}`} onClick={() => setRentType('daily')}>Daily</span>
-                <span className={`tab tab-bordered ${rentType == 'monthly' ? 'tab-active' : null}`} onClick={() => setRentType('monthly')}>Monthly</span>
+                <span
+                  className={`tab tab-bordered ${
+                    rentType == "daily" ? "tab-active" : null
+                  }`}
+                  onClick={() => setRentType("daily")}
+                >
+                  Daily
+                </span>
+                <span
+                  className={`tab tab-bordered ${
+                    rentType == "monthly" ? "tab-active" : null
+                  }`}
+                  onClick={() => setRentType("monthly")}
+                >
+                  Monthly
+                </span>
               </div>
-              <div className="form-control w-10/12  flex flex-row justify-center border-2 p-2 bg-white rounded-xl ">
+              <div className="form-control w-10/12  flex flex-row justify-center p-2 bg-white rounded-xl ">
                 <div className="m-2">
                   <label className="label">
-                    <span className="label-text font-bold font-large">Location</span>
+                    <span className="label-text font-bold font-large">
+                      Location
+                    </span>
                   </label>
                   <input
                     type="text"
                     placeholder="Type here"
                     onChange={handleLocation}
-                    className="input bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 rounded-xl  outline-none"
+                    className="input bg-base-100 text-gray-800 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 rounded-xl focus:outline-none"
                   />
                 </div>
                 <div className="m-2">
                   <label className="label">
-                    <span className="label-text font-bold font-large">Start - End</span>
+                    <span className="label-text font-bold font-large">
+                      Start - End
+                    </span>
                   </label>
                   <Datepicker
                     primaryColor={"rose"}
@@ -88,19 +106,21 @@ const SearchBox = () => {
                     minDate={new Date()}
                     value={date}
                     separator={"to"}
-                    inputClassName='w-80 h-12 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 p-2 rounded-xl outline-none'
+                    inputClassName="w-80 h-12 text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 p-2 rounded-xl outline-none"
                   />
                 </div>
                 <div className="m-2">
                   <label className="label">
-                    <span className="label-text font-bold font-large">Price</span>
+                    <span className="label-text font-bold font-large">
+                      Price
+                    </span>
                   </label>
                   <input
                     type="text"
                     id="minPrice"
                     placeholder="Min"
                     onChange={handlePrice}
-                    className="rounded-xl w-16 p-2 text-center bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 outline-none"
+                    className="rounded-xl w-16 p-2 text-center text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 outline-none"
                   />
                   --
                   <input
@@ -108,10 +128,13 @@ const SearchBox = () => {
                     id="maxPrice"
                     placeholder="Max"
                     onChange={handlePrice}
-                    className="rounded-xl w-16 p-2 text-center bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 outline-none"
+                    className="rounded-xl w-16 p-2 text-center bg-base-100 border-2 text-gray-800 border-gray-100 hover:border-gray-100 hover:bg-base-200 outline-none"
                   />
                   <div className="dropdown dropdown-hover">
-                    <label tabIndex="0" className="btn ml-2 text-gray-400 rounded-xl bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200">
+                    <label
+                      tabIndex="0"
+                      className="btn ml-2 text-gray-400 rounded-xl bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200"
+                    >
                       {rooms} room(s)
                     </label>
                     <ul
@@ -135,14 +158,19 @@ const SearchBox = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="btn text-white ml-2 bg-rose-500 border-2 border-rose-100 hover:border-rose-100 hover:bg-rose-600" onClick={storeFilterStates}>search</div>
+                  <div
+                    className="btn text-white ml-2 bg-rose-500 border-2 border-rose-100 hover:border-rose-100 hover:bg-rose-600"
+                    onClick={storeFilterStates}
+                  >
+                    search
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
