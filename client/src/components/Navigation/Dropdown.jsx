@@ -1,21 +1,28 @@
-import React from 'react';
-import Login from '../SignupLogin/Login';
-import Signup from '../SignupLogin/Signup';
+import React from "react";
+import Login from "../SignupLogin/Login";
+import Signup from "../SignupLogin/Signup";
 function Dropdown() {
   return (
     <div>
       <div className="dropdown dropdown-bottom dropdown-end ">
-        <button className=" flex gap-3 justify-center align-middle">
-          <i
+        <div className="flex">
+          <button className="flex gap-3 justify-center align-middle">
+            {/* <i
             className="fa-solid fa-bars fa-lg"
             style={{ color: '#161717' }}
-          ></i>
-
+          ></i> */}
+            <i
+              className="fa-solid fa-circle-user fa-2xl"
+              style={{ color: "#161717" }}
+            ></i>
+          </button>
+          {/* <button className="flex gap-3 justify-center align-middle ml-3">
           <i
-            className="fa-solid fa-circle-user fa-2xl"
-            style={{ color: '#161717' }}
+            className="fa-solid fa-arrow-right-from-bracket fa-2xl"
+            style={{ color: "#161717" }}
           ></i>
-        </button>
+        </button> */}
+        </div>
 
         <ul
           tabIndex={0}

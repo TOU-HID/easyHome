@@ -14,8 +14,8 @@ function LandingNavbar() {
       <div className="logo">
         <Link to="/">
           <img
-            src="https://res.cloudinary.com/dru7kzv3i/image/upload/v1682916521/esyhome-removebg-preview_xbi7k2.jpg"
-            className="w-20 h-18 mt-2 ml-4 rounded-full scale-150"
+            src="https://res.cloudinary.com/dru7kzv3i/image/upload/v1682933132/esyhome-removebg-preview_bu9w5o.jpg"
+            className="w-20 h-18 mt-2 ml-4 scale-150"
           ></img>
         </Link>
       </div>
@@ -29,7 +29,7 @@ function LandingNavbar() {
         </>
       )} */}
 
-      <div className="Login border-2 pt-2 pr-1 h-10 pl-4 rounded-full mt-2 shadow-lg  mr-3">
+      <div className="Login pt-2 pr-1 h-10 pl-4  mt-2 mr-3">
         {isAuthenticated ? <LogoutDropdown /> : <Dropdown />}
       </div>
     </div>

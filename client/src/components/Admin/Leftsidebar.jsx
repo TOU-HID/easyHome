@@ -17,25 +17,23 @@ function Leftsidebar() {
     nevigate("/selectpost");
   };
   return (
-    <div className="w-70 min-h-[83vh] bg-[#f4c8c8]">
-      {/* <div className="text-2xl font-semibold justify-center flex mr-7 mt-8">
+    <div className="w-70 min-h-[83vh] bg-[#FCF5F5] shadow-lg">
+      {/* <div className="text-xl font-semibold justify-center flex mr-7 mt-8">
         EASY HOME
       </div> */}
       <div className="flex flex-col justify-center items-center mb-2 mt-10">
-        <div className="avatar">
+        <div className="avatar mb-3">
           <div className="w-24 rounded-full borde-8  border-white">
             <img src="https://res.cloudinary.com/dru7kzv3i/image/upload/v1682870115/ogldsfd3hnazfmj2ejs3.png" />
           </div>
         </div>
-        <div> Welcome</div>
-        <div className="text-lg font-semibold">
-          {loggedInUsers[0].userName.toUpperCase() + " !"}
-        </div>
+        <div className="text-lg"> welcome</div>
+        <div className="text-lg font-semibold">{loggedInUsers[0].userName}</div>
       </div>
       <div className="mt-10 ml-6 mr-6 flex flex-col gap-8 text-[#0500c] items-center">
         <div className="flex justify-center">
           <button
-            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-2xl font-semibold w-60 hover:text-white items-center justify-start p-1"
+            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-xl font-semibold w-60 hover:text-white items-center justify-start p-1"
             onClick={handleDashboardClick}
           >
             <div className="flex gap-2 items-center">
@@ -47,7 +45,7 @@ function Leftsidebar() {
         {/* Daily Properies */}
         <div>
           <button
-            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-2xl font-semibold w-60 hover:text-white items-center justify-start p-1"
+            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-xl font-semibold w-60 hover:text-white items-center justify-start p-1"
             onClick={handleDailyPropertyClick}
           >
             <div className="flex gap-2 items-center">
@@ -60,7 +58,7 @@ function Leftsidebar() {
         {/* Monthly Properies */}
         <div>
           <button
-            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-2xl font-semibold w-60 hover:text-white items-center justify-start p-1"
+            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-xl font-semibold w-60 hover:text-white items-center justify-start p-1"
             onClick={handleMonthlyPropertyClick}
           >
             <div className="flex gap-2 items-center">
@@ -72,7 +70,7 @@ function Leftsidebar() {
 
         <div>
           <button
-            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-2xl font-semibold w-60 hover:text-white items-center justify-start p-1"
+            className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-rose-300 rounded-lg text-xl font-semibold w-60 hover:text-white items-center justify-start p-1"
             onClick={handlePostClick}
           >
             <div className="flex gap-2 items-center">

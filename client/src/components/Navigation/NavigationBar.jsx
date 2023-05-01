@@ -17,8 +17,8 @@ function NavigationBar({ isProductDetailsPage }) {
       <div className="logo">
         <Link to="/">
           <img
-            src="https://res.cloudinary.com/dru7kzv3i/image/upload/v1682916610/esyhome-removebg-nav_wg61bh.jpg"
-            className="w-20 h-16 ml-4 scale-150"
+            src="https://res.cloudinary.com/dru7kzv3i/image/upload/v1682933127/esyhome-removebg-nav_tgbq6m.jpg"
+            className="w-20 h-18 mt-2 ml-4 scale-150"
             alt="alt"
           ></img>
         </Link>
@@ -139,7 +139,7 @@ function NavigationBar({ isProductDetailsPage }) {
             </div> */}
           </div>
         ) : null}
-        <div className="Login border-2 pt-2 pr-1 h-10 pl-4 rounded-full mt-1 shadow-lg  mr-3">
+        <div className="Login pt-2 pr-1 h-10 pl-4 mt-1 mr-3">
           {isAuthenticated ? <LogoutDropdown /> : <Dropdown />}
         </div>
       </div>
