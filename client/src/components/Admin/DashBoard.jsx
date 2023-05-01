@@ -71,10 +71,10 @@ function DashBoard() {
       <div className="flex flex-col gap-5 mt-3">
         <div className="flex flex-col gap-3 mt-4 mb-4">
           <div className="font-bold text-3xl"> Property Dashboard</div>
-          <div className=" text-xl">
+          {/* <div className=" text-xl">
             {" "}
             Welcome {loggedInUsers[0].userName.toUpperCase() + " !"}
-          </div>
+          </div> */}
         </div>
         <div className="flex gap-5">
           <div className="card bg-[#dfdfe1] w-[40vw] h-[50vh] bg-base-100 shadow-xl">
