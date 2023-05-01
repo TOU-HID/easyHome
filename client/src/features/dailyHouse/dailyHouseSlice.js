@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createPost, getAllHouses, getHousesByID } from './dailyHouseAPI';
+import {
+  createPost,
+  getAllHouses,
+  getHousesByID,
+  deletePost,
+} from './dailyHouseAPI';
 
 const initialState = {
   dailyHouses: [],
@@ -37,6 +42,14 @@ export const getSingleDailyHouse = createAsyncThunk(
   'dailyHouses/getSingleDailyHouse',
   async (houseId) => {
     const dailySelectedHouse = await getHousesByID(houseId);
+
+    return dailySelectedHouse;
+  }
+);
+export const deleteDailyHouse = createAsyncThunk(
+  'dailyHouses/deleteDailyHouse',
+  async (houseId) => {
+    const dailySelectedHouse = await deletePost(houseId);
 
     return dailySelectedHouse;
   }
@@ -104,6 +117,20 @@ const dailyHouseSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getSingleDailyHouse.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+      })
+      .addCase(deleteDailyHouse.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.dailySingleHouse.filter((item) => item._id !== action.meta.arg);
+      })
+      .addCase(deleteDailyHouse.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(deleteDailyHouse.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.error = action.error?.message;

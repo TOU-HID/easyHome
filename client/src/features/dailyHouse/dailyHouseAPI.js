@@ -30,6 +30,13 @@ export const updatePosts = async (id, data) => {
   const response = await axios.put(`${BASE_URL}/dailyhouse/${id}`, data);
   return response.data;
 };
+
+export const deletePost = async (id) => {
+  console.log(id);
+  const response = await axios.delete(`${BASE_URL}/dailyhouse/${id}`);
+  return response.data;
+};
+
 export const rejectRequest = async (id, data) => {
   console.log(id, data);
   const response = await axios.put(
