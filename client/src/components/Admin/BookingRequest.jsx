@@ -49,15 +49,15 @@ function BookingRequest({ house, bookerid, socket }) {
           renterId: bookerid,
         };
         updatePosts(house._id, essentials);
-
-        dispatch(retriveAllHouses());
-      } else {
-        const data = { bookerid: bookerid };
         socket.emit('sendNotification', {
           sender: loggedInUsers[0],
           receiverId: data.bookerid,
           message: 'Your booking is accepted'
         })
+
+        dispatch(retriveAllHouses());
+      } else {
+        // const data = { bookerid: bookerid };
       }
     });
   };
@@ -80,14 +80,14 @@ function BookingRequest({ house, bookerid, socket }) {
         rejectRequest(house._id, data).then((res) => {
           console.log(res);
         });
-        dispatch(retriveAllHouses());
-      } else {
-        const data = { bookerid: bookerid };
         socket.emit('sendNotification', {
           sender: loggedInUsers[0],
           receiverId: data.bookerid,
           message: 'Your booking is rejected'
         })
+        dispatch(retriveAllHouses());
+      } else {
+        // const data = { bookerid: bookerid };
       }
     });
   };

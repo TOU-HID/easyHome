@@ -47,15 +47,15 @@ function DailyBookingRequest({ house, bookerid, socket }) {
           renterId: bookerid,
         };
         updatePosts(house._id, essentials);
-
-        dispatch(retriveAllDailyHouses());
-      } else {
-        const data = { bookerid: bookerid };
         socket.emit('sendNotification', {
           sender: loggedInUsers[0],
           receiverId: data.bookerid,
           message: 'Your daily booking is accepted'
         })
+
+        dispatch(retriveAllDailyHouses());
+      } else {
+        // const data = { bookerid: bookerid };
       }
     });
   };
@@ -77,14 +77,14 @@ function DailyBookingRequest({ house, bookerid, socket }) {
         rejectRequest(house._id, data).then((res) => {
           console.log(res);
         });
-        dispatch(retriveAllDailyHouses());
-      } else {
-        const data = { bookerid: bookerid };
         socket.emit('sendNotification', {
           sender: loggedInUsers[0],
           receiverId: data.bookerid,
           message: 'Your daily booking is rejected'
         })
+        dispatch(retriveAllDailyHouses());
+      } else {
+        // const data = { bookerid: bookerid };
       }
     });
   };

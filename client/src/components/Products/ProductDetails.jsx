@@ -65,7 +65,7 @@ function ProductDetails() {
             </div>
             <div className="flex flex-col gap-8">
               <div className="flex gap-4 align-middle ">
-                <div className=" text-xl font-bold">Details :</div>
+                <div className=" text-xl font-bold">DETAILS :</div>
                 <div className=" text-xl flex flex-row gap-5">
                   <p> {selectedHouse[0].bedroom} Bedroom </p>
                   <p> {selectedHouse[0].bathroom} Bathroom </p>
@@ -73,20 +73,16 @@ function ProductDetails() {
                   <p> {selectedHouse[0].sqft} Sqft </p>
                 </div>
               </div>
-              <div className=" text-2xl font-bold">
-                Available from{" "}
-                <span>
-                  {moment(selectedHouse[0].availableform).format("Do")}
+              <div className=" text-2xl font-semibold">
+                AVAILABLE FORM :{" "}
+                <span className="text-rose-500">
+                  {moment(selectedHouse[0].availableform).format("ll")}
                 </span>{" "}
-                of{" "}
-                <span>
-                  {moment(selectedHouse[0].availableform).format("MMMM")}
-                </span>
               </div>
               <div className=" text-2xl">
                 <div>
-                  <span className="font-bold">Rent</span>{" "}
-                  {selectedHouse[0].rent} BDT/Month
+                  <span className="font-semibold">RENT :</span>{" "}
+                  <span className="text-rose-500">{selectedHouse[0].rent} BDT/Month</span>
                 </div>
               </div>
               <div>
@@ -95,7 +91,7 @@ function ProductDetails() {
             </div>
           </div>
         </div>
-        <div className="card w-[25vw] h-fit``  bg-base-100 shadow-xl">
+        <div className="card w-[25vw] h-fit bg-base-100 shadow-xl">
           <div className="card-body">
             <div className="card-title text-2xl">
               {" "}
