@@ -31,7 +31,7 @@ function UserProfile() {
               <div className="mb-10">
                 <ProfileOptions userName={loggedInUsers[0].userName} />
               </div>
-              <Product showAll={true} />
+              <Product />
             </>
           )}
         </>

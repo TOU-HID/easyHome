@@ -22,9 +22,9 @@ function ProfileOptions({ userName }) {
     socket.connect();
     setSocket(socket);
     console.log(socket);
-    socket.on("firstEmit", (data) => {
-      console.log(data);
-    });
+    // socket.on("firstEmit", (data) => {
+    //   console.log(data);
+    // });
   }, []);
 
   useEffect(() => {
