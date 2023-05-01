@@ -9,14 +9,14 @@ import { io } from "socket.io-client";
 function OwnProductDetails() {
   const dispatch = useDispatch();
   const [socket, setSocket] = useState(null);
+  const { houseList } = useSelector((state) => state.house);
+  const [newHouseList, setNewHouseList] = useState(houseList)
+  const { loggedInUsers } = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(retriveAllHouses());
     // dispatch(retriveAllDailyHouses());
   }, []);
-  const { houseList } = useSelector((state) => state.house);
-  const { loggedInUsers } = useSelector((state) => state.user);
-  console.log(loggedInUsers);
 
   useEffect(() => {
     const socket = new io("http://localhost:3001", {
@@ -34,6 +34,14 @@ function OwnProductDetails() {
   useEffect(() => {
     socket?.emit("newUser", loggedInUsers[0]._id);
   }, [socket]);
+
+  const newHouseListHandeler = (id) => {
+    const houses = newHouseList.filter(item => item._id !== id)
+    setNewHouseList(houses)
+    dispatch(retriveAllHouses());
+  }
+
+  console.log(newHouseList);
 
   return (
     <div>
@@ -55,7 +63,7 @@ function OwnProductDetails() {
 
           {/* Each property cart */}
 
-          {houseList
+          {newHouseList
             .filter((house) => {
               return house.postby === loggedInUsers[0]._id;
             })
@@ -70,6 +78,7 @@ function OwnProductDetails() {
                     house={house}
                     availablity={house.isavailable}
                     socket={socket}
+                    newHouseListHandeler={newHouseListHandeler}
                   />
                 </>
               );

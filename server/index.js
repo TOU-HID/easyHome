@@ -49,7 +49,7 @@ const getUser = (userId) => {
 };
 
 io.on('connection', (socket) => {
-  console.log('New user connected');
+  // console.log('New user connected');
   io.emit('firstEmit', 'Hello');
 
   socket.on('newUser', (userId) => {
@@ -64,10 +64,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    // console.log('user disconnected');
     removeUser(socket.id);
   });
-  console.log(onlineUsers);
+  // console.log(onlineUsers);
 });
 
 expressServer.listen(PORT, () => {

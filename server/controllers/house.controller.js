@@ -65,10 +65,15 @@ const updateHouseById = async (req, res) => {
   }
 };
 const deleteHouseById = async (req, res) => {
+  // console.log(req.params.id);
   const houseId = req.params.id;
   try {
     const deletedHouse = await House.findByIdAndDelete(houseId);
-    res.status(200).send({ status: '200', message: 'Deleted Successfully' });
+    res.status(200).send({
+      status: '200',
+      message: 'Deleted Successfully',
+      id: houseId,
+    });
   } catch (error) {
     console.log(error);
   }

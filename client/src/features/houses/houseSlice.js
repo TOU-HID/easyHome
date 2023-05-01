@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createPost, getAllHouses, getHousesByID } from './houseAPI';
+import {
+  createPost,
+  getAllHouses,
+  getHousesByID,
+  deletePost,
+} from './houseAPI';
 
 const initialState = {
   houses: [],
@@ -28,6 +33,16 @@ export const retriveSelectedHouses = createAsyncThunk(
     const selectedHouse = await getHousesByID(houseId);
 
     return selectedHouse;
+  }
+);
+export const deletedHouse = createAsyncThunk(
+  'houses/deletedHouse',
+  async (houseId) => {
+    // console.log(houseId);
+    const deletedHouse = await deletePost(houseId);
+    deletedHouse.then((res) => console.log(res));
+    console.log('deletedHouse', deletedHouse);
+    return deletedHouse;
   }
 );
 export const getSingleHouse = createAsyncThunk(
@@ -113,6 +128,23 @@ const houseSlice = createSlice({
         state.isError = true;
         state.isLoading = false;
         state.error = action.error?.message;
+      })
+
+      .addCase(deletedHouse.fulfilled, (state, action) => {
+        // console.log(action.payload);
+        state.isError = false;
+        state.isLoading = false;
+        state.houseList.filter((item) => item._id !== action.meta.arg);
+      })
+      .addCase(deletedHouse.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(deletedHouse.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+        state.houseList.filter((item) => item._id !== action.meta.arg);
       });
   },
 });

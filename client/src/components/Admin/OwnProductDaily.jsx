@@ -11,6 +11,7 @@ function OwnProductDaily() {
   const dispatch = useDispatch();
   const [socket, setSocket] = useState(null);
   const { dailyHouseList } = useSelector((state) => state.dailyHouse);
+  const [newHouseList, setNewHouseList] = useState(dailyHouseList)
   const { loggedInUsers } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -34,6 +35,12 @@ function OwnProductDaily() {
     dispatch(retriveAllDailyHouses());
   }, []);
 
+  const newHouseListHandeler = (id) => {
+    const houses = newHouseList.filter(item => item._id !== id)
+    setNewHouseList(houses)
+    dispatch(retriveAllDailyHouses());
+  }
+
   return (
     <div>
       <NavigationBar />
@@ -54,7 +61,7 @@ function OwnProductDaily() {
 
           {/* Each property cart */}
 
-          {dailyHouseList
+          {newHouseList
             .filter((house) => {
               return house.postby === loggedInUsers[0]._id;
             })
@@ -69,6 +76,7 @@ function OwnProductDaily() {
                     house={house}
                     availablity={house.isavailable}
                     socket={socket}
+                    newHouseListHandeler={newHouseListHandeler}
                   />
                 </>
               );

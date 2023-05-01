@@ -5,9 +5,9 @@ function DailyBasisProductCard({ house }) {
   let rating = 0;
   const no_of_rating = house.rating.length;
   // console.log(house.rating);
-  house.rating.map((elem) => {
-    rating += elem.rate;
-  });
+  house.rating.map((elem) =>
+    rating += elem.rate
+  );
 
   return (
     <div className="card w-[20vw]  bg-base-100 shadow-md ">
@@ -40,7 +40,7 @@ function DailyBasisProductCard({ house }) {
               <div>
                 <i className="fa-solid fa-star fa-sm"></i>
               </div>
-              <div>{Math.ceil(rating / no_of_rating)}</div>
+              <div>{no_of_rating > 0 ? Math.ceil(rating / no_of_rating) : 'No review'}</div>
             </div>
             <div className="mt-1 text-md text-gray-500  font-light flex justify-end">
               {house.type.charAt(0).toUpperCase() + house.type.slice(1)}

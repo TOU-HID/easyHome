@@ -28,7 +28,6 @@ function Product({ showAll, dailyBasis }) {
     let tempList = []
     if (type === 'monthly') {
       if (location && price?.maxPrice && rooms) {
-        console.log('called')
         tempList = houseList.filter(house =>
           house.area.toLowerCase().match(location.toLowerCase()) &&
           // house.rent.toString() === price.minPrice &&
@@ -53,8 +52,7 @@ function Product({ showAll, dailyBasis }) {
         setMonthlyHouses(houseList)
       }
     } else {
-      if (location && date.startDate && price?.maxPrice && rooms) {
-        console.log('called')
+      if (location && price?.maxPrice && rooms) {
         tempList = dailyHouseList.filter(house =>
           house.area.toLowerCase().match(location.toLowerCase()) &&
           house.rentperday.toString() <= price.maxPrice &&
