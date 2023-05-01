@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import NavigationBar from '../Navigation/NavigationBar';
-import { addDailyHouse } from '../../features/dailyHouse/dailyHouseSlice';
-import Leftsidebar from '../Admin/Leftsidebar';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import NavigationBar from "../Navigation/NavigationBar";
+import { addDailyHouse } from "../../features/dailyHouse/dailyHouseSlice";
+import Leftsidebar from "../Admin/Leftsidebar";
 
 function DailyPostForm() {
   const dispatch = useDispatch();
 
   const { loggedInUsers } = useSelector((state) => state.user);
-  const [housename, setHouseName] = useState('');
-  const [housenumber, setHouseNumber] = useState('');
-  const [area, setArea] = useState('');
-  const [city, setCity] = useState('');
-  const [type, setType] = useState('');
-  const [rent, setRent] = useState('');
-  const [bedroom, setBedroom] = useState('');
-  const [bathroom, setBathroom] = useState('');
-  const [rentperday, setRentperday] = useState('');
-  const [monthlyMaintenanceCost, setMonthlyMaintenanceCost] = useState('');
-  const [sqft, setSqft] = useState('');
-  const [availableform, setAvailableform] = useState('');
+  const [housename, setHouseName] = useState("");
+  const [housenumber, setHouseNumber] = useState("");
+  const [area, setArea] = useState("");
+  const [city, setCity] = useState("");
+  const [type, setType] = useState("");
+  const [rent, setRent] = useState("");
+  const [bedroom, setBedroom] = useState("");
+  const [bathroom, setBathroom] = useState("");
+  const [rentperday, setRentperday] = useState("");
+  const [monthlyMaintenanceCost, setMonthlyMaintenanceCost] = useState("");
+  const [sqft, setSqft] = useState("");
+  const [availableform, setAvailableform] = useState("");
   const [image, setImage] = useState([]);
 
   const [loading, setLoading] = useState(false);
@@ -58,7 +58,7 @@ function DailyPostForm() {
     };
     console.log(image.length);
     if (image.length != 4) {
-      toast.error('You are allowed to select exectly 4 images');
+      toast.error("You are allowed to select exectly 4 images");
       setLoading(false);
     } else {
       dispatch(addDailyHouse(houseDetails)).then((res) => {
@@ -67,22 +67,22 @@ function DailyPostForm() {
         if (res.payload !== undefined) {
           setLoading(false);
           setImage([]);
-          setHouseName('');
-          setRent('');
-          setHouseNumber('');
-          setArea('');
-          setCity('');
-          setBedroom('');
-          setBathroom('');
-          setSqft('');
-          setAvailableform('');
-          setType('');
-          setRentperday('');
-          setMonthlyMaintenanceCost('');
-          toast.success('post successful');
+          setHouseName("");
+          setRent("");
+          setHouseNumber("");
+          setArea("");
+          setCity("");
+          setBedroom("");
+          setBathroom("");
+          setSqft("");
+          setAvailableform("");
+          setType("");
+          setRentperday("");
+          setMonthlyMaintenanceCost("");
+          toast.success("post successful");
         } else {
           setLoading(false);
-          toast.error('Invalid Information');
+          toast.error("Invalid Information");
         }
       });
     }
@@ -96,14 +96,14 @@ function DailyPostForm() {
       <NavigationBar />
 
       {/* <div>{type}</div> */}
-      <div className="flex mt-5 gap-10 ">
+      <div className="flex">
         {/* Left Sidebar */}
-        <div className=" ml-16 w-[40vw] min-h-[85vh] rounded-xl bg-[#f4c8c8] pl-5  ">
+        <div className="w-80 min-h-[85vh]">
           <Leftsidebar />
         </div>
         {/* Form Container */}
-        <div className="container relative flex flex-col justify-center rounded-2xl mr-96 bg-[#e8d5d577]">
-          <div className=" p-6 m-auto rounded-md shadow-md mt-1">
+        <div className="container flex flex-col justify-center rounded-2xl mr-96 bg-[#e8d5d577] mt-2 ml-60">
+          <div className=" p-6 m-auto rounded-md mt-1">
             <h1 className="text-3xl  text-center text-gray-700 ">
               MAKE A POST
             </h1>
@@ -235,12 +235,12 @@ function DailyPostForm() {
                 <div>
                   <label className="label">
                     <span className="text-base label-text">
-                      Available Form{' '}
+                      Available Form{" "}
                     </span>
                   </label>
                   <input
                     type="date"
-                    min={moment(Date.now()).format('YYYY-MM-DD')}
+                    min={moment(Date.now()).format("YYYY-MM-DD")}
                     className="input input-bordered rounded-md w-52"
                     onChange={(e) => setAvailableform(e.target.value)}
                     value={availableform}
@@ -300,7 +300,7 @@ function DailyPostForm() {
                     return (
                       <span key={i}>
                         <img
-                          style={{ padding: '10px' }}
+                          style={{ padding: "10px" }}
                           width={100}
                           height={50}
                           src={item ? item : null}
@@ -324,7 +324,7 @@ function DailyPostForm() {
                       </span>
                     </div>
                   ) : (
-                    'Post'
+                    "Post"
                   )}
                 </button>
               </div>
