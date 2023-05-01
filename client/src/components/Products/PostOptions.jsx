@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import moment from 'moment';
-import { addHouse } from '../../features/houses/houseSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import NavigationBar from '../Navigation/NavigationBar';
-import Leftsidebar from '../Admin/Leftsidebar';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import moment from "moment";
+import { addHouse } from "../../features/houses/houseSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import NavigationBar from "../Navigation/NavigationBar";
+import Leftsidebar from "../Admin/Leftsidebar";
 
 function PostOptions() {
   const [loading, setLoading] = useState(false);
@@ -14,18 +14,18 @@ function PostOptions() {
   const nevigate = useNavigate();
 
   const handleDailyClick = () => {
-    nevigate('/postDaily');
+    nevigate("/postDaily");
   };
   const handleMonthlyClick = () => {
-    nevigate('/post');
+    nevigate("/post");
   };
 
   return (
     <div>
       <NavigationBar />
-      <div className="flex mt-5 gap-10 ">
+      <div className="flex gap-10 ml-0 mt-0">
         {/* Left Sidebar */}
-        <div className=" ml-16 w-[30vw] min-h-[85vh] rounded-xl bg-[#f4c8c8] pl-4  ">
+        <div className="flex gap-10 ml-0 mt-0">
           <Leftsidebar />
         </div>
         {/* Form Container */}

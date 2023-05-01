@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-import RentedPropertyCard from './RentedPropertyCard';
-import Barchart from '../Figures/Barchart';
-import moment from 'moment';
-import DoughnutJs from '../Figures/DoughnutJs';
+import RentedPropertyCard from "./RentedPropertyCard";
+import Barchart from "../Figures/Barchart";
+import moment from "moment";
+import DoughnutJs from "../Figures/DoughnutJs";
 
-import Leftsidebar from './Leftsidebar';
-import RentedPropertyDaily from './RentedPropertyDaily';
+import Leftsidebar from "./Leftsidebar";
+import RentedPropertyDaily from "./RentedPropertyDaily";
 
 function DashBoard() {
   const { loggedInUsers } = useSelector((state) => state.user);
   const { houseList } = useSelector((state) => state.house);
   const { dailyHouseList } = useSelector((state) => state.dailyHouse);
 
-  const [monthname, setMonthname] = useState('january');
+  const [monthname, setMonthname] = useState("january");
   // NEED TO DISPATCH
   // get DailyAllHOuse
   // Monthly get All house
@@ -29,7 +29,7 @@ function DashBoard() {
     })
     .filter(
       (house) =>
-        moment(house.availableform).format('MMMM').toLowerCase() ===
+        moment(house.availableform).format("MMMM").toLowerCase() ===
         monthname.toLowerCase()
     )
     .map((house) => house.housename);
@@ -37,7 +37,7 @@ function DashBoard() {
     labels,
     datasets: [
       {
-        label: 'Monthly Income',
+        label: "Monthly Income",
         data: houseList
           .filter((house) => {
             return house.postby === loggedInUsers[0]._id;
@@ -49,10 +49,10 @@ function DashBoard() {
         // backgroundColor: 'rgba(255, 99, 132, 0.5)',
 
         backgroundColor: [
-          'rgba(53, 162, 235, 0.8)',
-          'rgba(25, 99, 132, 0.5)',
+          "rgba(53, 162, 235, 0.8)",
+          "rgba(25, 99, 132, 0.5)",
 
-          'rgba(53, 162, 75, 0.5)',
+          "rgba(53, 162, 75, 0.5)",
           // '#C1311C',
           // '#B36C00',
           // '#3676D1',
@@ -62,7 +62,7 @@ function DashBoard() {
   };
 
   return (
-    <div className="flex gap-10 ml-20 mt-5">
+    <div className="flex gap-10 ml-0 mt-0">
       {/* <div>{monthname}</div> */}
       {/* Left Side */}
       <Leftsidebar />
@@ -72,8 +72,8 @@ function DashBoard() {
         <div className="flex flex-col gap-3 mt-4 mb-4">
           <div className="font-bold text-3xl"> Property Dashboard</div>
           <div className=" text-xl">
-            {' '}
-            Welcome {loggedInUsers[0].userName.toUpperCase() + ' !'}
+            {" "}
+            Welcome {loggedInUsers[0].userName.toUpperCase() + " !"}
           </div>
         </div>
         <div className="flex gap-5">
