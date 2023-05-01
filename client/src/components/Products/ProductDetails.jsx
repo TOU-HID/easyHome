@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
-import { fetchUserByid } from '../../features/users/userSlice';
-import ProductRating from './ProductRating';
-import RatingModla from './RatingModla';
-import { makeBooking } from '../../features/houses/houseAPI';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import { fetchUserByid } from "../../features/users/userSlice";
+import ProductRating from "./ProductRating";
+import RatingModla from "./RatingModla";
+import { makeBooking } from "../../features/houses/houseAPI";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import NearByPlaces from "./NearByPlaces";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -24,14 +25,14 @@ function ProductDetails() {
     const productId = id;
     const bookingData = {
       bookerid: loggedInUsers[0]._id,
-      bookingstatus: 'pending',
+      bookingstatus: "pending",
     };
 
     makeBooking(productId, bookingData).then((res) => {
-      if (res.status === '200') {
-        toast.success('Successfullt Reserved');
+      if (res.status === "200") {
+        toast.success("Successfullt Reserved");
       } else if (res.status === undefined) {
-        toast.error('You have already reserved once');
+        toast.error("You have already reserved once");
       }
     });
   };
@@ -45,11 +46,11 @@ function ProductDetails() {
               {currentProductLandlord.length > 0 ? (
                 <>
                   <h2 className="card-title text-2xl">
-                    This apartment hosted by{' '}
+                    This apartment hosted by{" "}
                     <span className="text-3xl font-semibold">
-                      {' '}
+                      {" "}
                       {currentProductLandlord[0].userName.toUpperCase()}
-                    </span>{' '}
+                    </span>{" "}
                   </h2>
                 </>
               ) : (
@@ -73,28 +74,31 @@ function ProductDetails() {
                 </div>
               </div>
               <div className=" text-2xl font-bold">
-                Available from{' '}
+                Available from{" "}
                 <span>
-                  {moment(selectedHouse[0].availableform).format('Do')}
-                </span>{' '}
-                of{' '}
+                  {moment(selectedHouse[0].availableform).format("Do")}
+                </span>{" "}
+                of{" "}
                 <span>
-                  {moment(selectedHouse[0].availableform).format('MMMM')}
+                  {moment(selectedHouse[0].availableform).format("MMMM")}
                 </span>
               </div>
               <div className=" text-2xl">
                 <div>
-                  <span className="font-bold">Rent</span>{' '}
+                  <span className="font-bold">Rent</span>{" "}
                   {selectedHouse[0].rent} BDT/Month
                 </div>
+              </div>
+              <div>
+                <NearByPlaces />
               </div>
             </div>
           </div>
         </div>
-        <div className="card w-[25vw]  bg-base-100 shadow-xl">
+        <div className="card w-[25vw] h-fit``  bg-base-100 shadow-xl">
           <div className="card-body">
             <div className="card-title text-2xl">
-              {' '}
+              {" "}
               {selectedHouse[0].housename}
             </div>
             <div className="flex flex-col gap-2 text-lg mt-5 mb-5">

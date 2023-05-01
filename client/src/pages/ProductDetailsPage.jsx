@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import Map from '../components/Products/Map';
-import ProductDetails from '../components/Products/ProductDetails';
-import ProductCarousel from '../components/Products/ProductCarousel';
-import { retriveSelectedHouses } from './../features/houses/houseSlice';
-import NavigationBar from '../components/Navigation/NavigationBar';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Map from "../components/Products/Map";
+import ProductDetails from "../components/Products/ProductDetails";
+import ProductCarousel from "../components/Products/ProductCarousel";
+import { retriveSelectedHouses } from "./../features/houses/houseSlice";
+import NavigationBar from "../components/Navigation/NavigationBar";
+import axios from "axios";
 
-import { retriveSelectedDailyHouses } from './../features/dailyHouse/dailyHouseSlice';
-import DailyBasisProductDetails from '../components/Products/DailyBasisProductDetails';
+import { retriveSelectedDailyHouses } from "./../features/dailyHouse/dailyHouseSlice";
+import DailyBasisProductDetails from "../components/Products/DailyBasisProductDetails";
 
 function ProductDetailsPage() {
   const dispatch = useDispatch();
-  const [location, setLocation] = useState()
+  const [location, setLocation] = useState();
   const { selectedHouse } = useSelector((state) => state.house);
   const { dailySelectedHouse } = useSelector((state) => state.dailyHouse);
 
   const { id } = useParams();
   const area = selectedHouse[0].area;
   const city = selectedHouse[0].city;
-  const address = area.toLowerCase() + ',' + city.toLowerCase();
+  const address = area.toLowerCase() + "," + city.toLowerCase();
 
   const getUserByID = async (address) => {
     const response = await axios.get(
