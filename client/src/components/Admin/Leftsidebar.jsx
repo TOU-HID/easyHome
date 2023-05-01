@@ -1,18 +1,18 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 function Leftsidebar() {
   const nevigate = useNavigate();
   const handleDashboardClick = () => {
-    nevigate('/profile');
+    nevigate("/profile");
   };
   const handleMonthlyPropertyClick = () => {
-    nevigate('/profile/ownerPropertiesMonthly');
+    nevigate("/profile/ownerPropertiesMonthly");
   };
   const handleDailyPropertyClick = () => {
-    nevigate('/profile/ownerPropertiesDaily');
+    nevigate("/profile/ownerPropertiesDaily");
   };
   const handlePostClick = () => {
-    nevigate('/selectpost');
+    nevigate("/selectpost");
   };
   return (
     <div className=" w-[22vw] min-h-[83vh] rounded-xl bg-[#f4c8c8] pl-5 ">
