@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Map from "../components/Products/Map";
 import MapTest from "../components/MapTest/MapTest";
 import ProductDetails from "../components/Products/ProductDetails";
 import ProductCarousel from "../components/Products/ProductCarousel";

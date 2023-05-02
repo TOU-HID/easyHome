@@ -8,19 +8,12 @@ mapboxgl.accessToken =
   "pk.eyJ1Ijoic2FpbW9uc2lkZGlxdWUiLCJhIjoiY2xoNHc0MDkxMXRubzNsb3hpYXNnaWY0dCJ9.yVTz4-c9UoOaZvdPUOkCmQ";
 
 const MapTest = ({ nearbyPlaces }) => {
-  // const [viewport, setViewport] = useState({
-  //   latitude: 23.684994,
-  //   longitude: 90.356331,
-  //   width: "200%",
-  //   height: "100%",
-  //   zoom: 12,
-  // });
   const [location, setLocation] = useState({});
   const { selectedHouse } = useSelector((state) => state.house);
   const area = selectedHouse[0].area;
   const city = selectedHouse[0].city;
   const address = area.toLowerCase() + "," + city.toLowerCase();
-  const [showPopup, setShowPopUp] = useState(false);
+  const [showPopup, setShowPopUp] = useState([false, false, false, false, false]);
 
   const getUserByID = async (address) => {
     const response = await axios.get(
@@ -46,7 +39,7 @@ const MapTest = ({ nearbyPlaces }) => {
             longitude: location?.lng,
             width: "200%",
             height: "100%",
-            zoom: 16,
+            zoom: 17,
           }}
           mapboxApiAccessToken={mapboxgl.accessToken}
           mapStyle="mapbox://styles/saimonsiddique/clh4vr8pp00oz01prgnhwae8v"
@@ -54,7 +47,7 @@ const MapTest = ({ nearbyPlaces }) => {
           {location?.lat ? (
             <>
               <Marker latitude={location?.lat} longitude={location?.lng}>
-                {!showPopup && (
+                {showPopup && (
                   <Popup
                     longitude={location?.lng}
                     latitude={location?.lat}
@@ -81,40 +74,40 @@ const MapTest = ({ nearbyPlaces }) => {
                   latitude={place.latitude}
                   longitude={place.longitude}
                 >
-                  {!showPopup && (
+                  {showPopup && (
                     <Popup
                       longitude={place?.longitude}
                       latitude={place?.latitude}
                       anchor="top-right"
-                      onClose={() => setShowPopUp(!showPopup)}
+                    // onClose={() => setShowPopUp(!showPopup)}
                     >
                       {place.name}
                     </Popup>
                   )}
                   <i
-                    className={`fa-solid fa-house-medical text-2xl text-blue-500 ${
-                      place.pType == "Healthcare" ? "" : "hidden"
-                    }`}
+                    onClick={() => setShowPopUp(!showPopup)}
+                    className={`fa-solid fa-house-medical text-xl text-blue-700 ${place.pType === "Healthcare" ? "" : "hidden"
+                      }`}
                   ></i>
                   <i
-                    className={`fa-solid fa-utensils text-2xl text-violet-700 ${
-                      place.pType == "Food" ? "" : "hidden"
-                    }`}
+                    onClick={() => setShowPopUp(!showPopup)}
+                    className={`fa-solid fa-utensils text-xl text-green-600 ${place.pType === "Food" ? "" : "hidden"
+                      }`}
                   ></i>
                   <i
-                    className={`fa-solid fa-cart-shopping text-2xl text-green-700 ${
-                      place.pType == "Shop" ? "" : "hidden"
-                    }`}
+                    onClick={() => setShowPopUp(!showPopup)}
+                    className={`fa-solid fa-cart-shopping text-xl text-yellow-900 ${place.pType === "Shop" ? "" : "hidden"
+                      }`}
                   ></i>
                   <i
-                    className={`fa-solid fa-user-graduate text-2xl text-orange-600 ${
-                      place.pType == "Education" ? "" : "hidden"
-                    }`}
+                    onClick={() => setShowPopUp(!showPopup)}
+                    className={`fa-solid fa-user-graduate text-xl text-rose-600 ${place.pType === "Education" ? "" : "hidden"
+                      }`}
                   ></i>
                   <i
-                    className={`fa-solid fa-building-columns text-2xl text-red-500 ${
-                      place.pType == "Bank" ? "" : "hidden"
-                    }`}
+                    onClick={() => setShowPopUp(!showPopup)}
+                    className={`fa-solid fa-building-columns text-xl text-black ${place.pType === "Bank" ? "" : "hidden"
+                      }`}
                   ></i>
                 </Marker>
               ))}

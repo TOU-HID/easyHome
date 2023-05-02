@@ -2,18 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-const dummySchool = [
-  "Sydney International School",
-  "Springdale International School",
-  "Royal School Dhaka",
-];
-
-const dummyHospital = [
-  "York Hospital",
-  "United Hospital Limited",
-  "Evercare Hospital Dhaka",
-];
-
 const NearByPlaces = ({ storePlacesHandler }) => {
   const [seachNearby, setSearchNearby] = useState("Healthcare");
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
@@ -69,9 +57,8 @@ const NearByPlaces = ({ storePlacesHandler }) => {
       </div>
       <div className="flex justify-center tabs tabs-boxed bg-[#FAF7F5]">
         <button
-          className={`tab ${
-            seachNearby === "Healthcare" ? "tab-active" : null
-          }`}
+          className={`tab ${seachNearby === "Healthcare" ? "tab-active" : null
+            }`}
           id="Healthcare"
           onClick={handleSearchNearby}
         >
@@ -106,37 +93,35 @@ const NearByPlaces = ({ storePlacesHandler }) => {
           Food
         </button>
       </div>
-      <div className="grid grid-cols-2 mx-[10vh]">
-        <ul className="list-disc w-80 m-2 ml-6">
-          {nearbyPlaces?.slice(1).map((item) => {
-            return (
-              <li>
-                <div className="text-lg font-semibold text-rose-500">
-                  {item.name}
-                </div>
-                <div>
-                  <span className="text-md font-semibold">Distance:</span>{" "}
-                  {(item.distance_in_meters / 1000).toFixed(2)} km{" "}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-        <div className="flex justify-center items-center">
-          <div>
-            <div className="text-center font-bold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-rose-500 to-rose-300">
-              Nearest {seachNearby}
-            </div>
-            <div className="text-lg font-semibold text-rose-500">
-              {nearbyPlaces[0]?.name}
-            </div>
-            <div className="text-center">
-              <span className="text-md font-semibold">Distance:</span>{" "}
-              {(nearbyPlaces[0]?.distance_in_meters / 1000).toFixed(2)} km{" "}
+      {nearbyPlaces.length > 0 ?
+        <div className="grid grid-cols-2 mx-[10vh]">
+          <ul className="list-disc w-80 m-2 ml-6">
+            {nearbyPlaces?.slice(1).map((item, i) => {
+              return (
+                <li key={i}>
+                  <div className="text-lg font-semibold text-rose-500">{item.name}</div>
+                  <div>
+                    <span className="text-md font-semibold">Distance:</span> {(item.distance_in_meters / 1000).toFixed(2)}{" "}
+                    km{" "}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="flex justify-center items-center">
+            <div>
+              <div className="text-center font-bold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-rose-500 to-rose-300">Nearest {seachNearby}</div>
+              <div className="text-lg font-semibold text-rose-500">{nearbyPlaces[0]?.name}</div>
+              <div className="text-center">
+                <span className="text-md font-semibold">Distance:</span> {(nearbyPlaces[0]?.distance_in_meters / 1000).toFixed(2)}{" "}
+                km{" "}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        :
+        null
+      }
     </div>
   );
 };
