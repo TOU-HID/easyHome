@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import ReactMapGL from "react-map-gl";
 
 const containerStyle = {
-  width: '175vh',
-  height: '400px',
-  borderRadius: '1rem',
-  boxShadow: '2px 2px 8px #000000',
+  width: "175vh",
+  height: "400px",
+  borderRadius: "1rem",
+  boxShadow: "2px 2px 8px #000000",
 
   //   margin: '40px',
 };
 
-const c = ['Dhaka', 'Mohakhali', 'Gulshan', 'Banani'];
+const c = ["Dhaka", "Mohakhali", "Gulshan", "Banani"];
 const center = [
   {
     lat: 23.7644025,
@@ -35,7 +36,7 @@ const center = [
 ];
 
 const onLoad = (marker) => {
-  console.log('marker: ', marker);
+  console.log("marker: ", marker);
 };
 
 const getUserByID = async (address) => {
@@ -49,17 +50,14 @@ function Map() {
   const { selectedHouse } = useSelector((state) => state.house);
   const area = selectedHouse[0].area;
   const city = selectedHouse[0].city;
-  const address = area.toLowerCase() + ',' + city.toLowerCase();
+  const address = area.toLowerCase() + "," + city.toLowerCase();
   const bangladesh = {
     lat: 23.684994,
     lng: 90.356331,
   };
-
   const [location, setLocation] = useState();
-
   // for getting coordinates
   // console.log(address);
-
   useEffect(() => {
     getUserByID(address).then((res) => {
       let locationFromApi = res.results[0].geometry.location;
@@ -68,7 +66,6 @@ function Map() {
       // location.push(locationFromApi);
     });
   }, [address]);
-
   return (
     <div className="flex justify-center mt-10 mb-10">
       <LoadScript googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}>
