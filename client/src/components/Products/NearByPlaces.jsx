@@ -36,7 +36,7 @@ const NearByPlaces = ({ storePlacesHandler }) => {
       let locationFromApi = res.results[0].geometry.location;
       setLocation(locationFromApi);
       fetch(
-        `https://barikoi.xyz/v2/api/search/nearby/category/NDY2Njo0Q1NGM05IS00w/0.5/5?longitude=${locationFromApi.lng}&latitude=${locationFromApi.lat}&ptype=Healthcare`
+        `https://barikoi.xyz/v2/api/search/nearby/category/NDY5OTo5T1VLUDVSMjJL/0.5/5?longitude=${locationFromApi.lng}&latitude=${locationFromApi.lat}&ptype=Healthcare`
       )
         .then((response) => response.json())
         .catch((error) => console.error("Error:", error))
@@ -51,7 +51,7 @@ const NearByPlaces = ({ storePlacesHandler }) => {
   const handleSearchNearby = (e) => {
     setSearchNearby(e.target.id);
     fetch(
-      `https://barikoi.xyz/v2/api/search/nearby/category/NDY2Njo0Q1NGM05IS00w/0.5/5?longitude=${location.lng}&latitude=${location.lat}&ptype=${e.target.id}`
+      `https://barikoi.xyz/v2/api/search/nearby/category/NDY5OTo5T1VLUDVSMjJL/0.5/5?longitude=${location.lng}&latitude=${location.lat}&ptype=${e.target.id}`
     )
       .then((response) => response.json())
       .catch((error) => console.error("Error:", error))
