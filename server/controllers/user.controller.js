@@ -1,17 +1,17 @@
-const USER = require('../models/user.schema');
-require('dotenv').config();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const USER = require("../models/user.schema");
+require("dotenv").config();
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const SECRET_KEY = process.env.JWT_SECRET;
 
 const createUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await USER.findOne({ email });
   if (user) {
-    res.status(401).send({ error: '400', message: 'user already exists' });
+    res.status(401).send({ error: "400", message: "user already exists" });
   } else {
     try {
-      if (password === '') throw new Error();
+      if (password === "") throw new Error();
       const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = new USER({
         ...req.body,
@@ -21,13 +21,13 @@ const createUser = async (req, res) => {
       // FOR JWT
       const uid = userRes._id;
       const accessToken = jwt.sign({ uid }, SECRET_KEY, {
-        expiresIn: '24h',
+        expiresIn: "24h",
       });
       console.log(accessToken);
       res.status(201).send({ data: userRes, accessToken: accessToken });
     } catch (error) {
       console.log(error);
-      res.status(400).send({ error: '400', message: 'could not create user' });
+      res.status(400).send({ error: "400", message: "could not create user" });
     }
   }
 };
@@ -46,11 +46,11 @@ const login = async (req, res) => {
     if (!validatePassword) throw new Error();
     // const Uuid = findedUser._id;
     const accessToken = jwt.sign({ uid: findedUser._id }, SECRET_KEY, {
-      expiresIn: '24h',
+      expiresIn: "24h",
     });
     res.status(200).send({ data: findedUser, accessToken: accessToken });
   } catch (error) {
-    res.status(400).send({ error: '400', message: 'Incorrect Information' });
+    res.status(400).send({ error: "400", message: "Incorrect Information" });
   }
 };
 
@@ -68,24 +68,24 @@ const googleCreateUser = async (req, res) => {
       // FOR JWT
       const uid = userRes._id;
       const accessToken = jwt.sign({ uid }, SECRET_KEY, {
-        expiresIn: '24h',
+        expiresIn: "24h",
       });
       //  console.log(accessToken);
       res.status(201).send({ data: userRes, accessToken: accessToken });
     } catch (error) {
       console.log(error);
-      res.status(400).send({ error: '400', message: 'could not create user' });
+      res.status(400).send({ error: "400", message: "could not create user" });
     }
   } else {
     try {
       const findedUser = user;
 
       const accessToken = jwt.sign({ uid: findedUser._id }, SECRET_KEY, {
-        expiresIn: '24h',
+        expiresIn: "24h",
       });
       res.status(200).send({ data: findedUser, accessToken: accessToken });
     } catch (error) {
-      res.status(400).send({ error: '400', message: 'Incorrect Information' });
+      res.status(400).send({ error: "400", message: "Incorrect Information" });
     }
   }
 };
@@ -99,18 +99,24 @@ const getUserProfile = (req, res) => {
     res.status(200).send(user);
     // console.log(req.user);
   } catch (error) {
-    res.status(400).send({ error: '400', message: ' resources not found ' });
+    res.status(400).send({ error: "400", message: " resources not found " });
   }
 };
 const getUserById = async (req, res) => {
   const userId = req.params.id;
   try {
     const selectedUser = await USER.findById(userId);
-    selectedUser.password = '';
+    selectedUser.password = "";
     res.status(200).send(selectedUser);
   } catch (error) {
     console.log(error);
   }
+};
+
+const likedHouse = async (req, res) => {
+  const { userId, houseId } = req.body;
+  try {
+  } catch (error) {}
 };
 
 module.exports = {
