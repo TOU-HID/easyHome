@@ -9,7 +9,7 @@ const userSchema = new Schema({
     type: String,
     default: "renter",
   },
-  liked: {
+  likedHouse: {
     type: [String],
     default: [],
   },

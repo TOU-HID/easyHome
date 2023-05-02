@@ -116,7 +116,30 @@ const getUserById = async (req, res) => {
 const likedHouse = async (req, res) => {
   const { userId, houseId } = req.body;
   try {
-  } catch (error) {}
+    const findedUser = await USER.findOne({ email });
+    const isLiked = findedUser.likedHouse.includes(houseId.toString());
+    let message = "";
+    if (!isLiked) {
+      likedHouse.push(houseId.toString());
+      message = "Added to wishlist";
+    } else {
+      const indexOfHouseId = findedUser.likedHouse.indexOf(houseId.toString());
+      if (indexOfHouseId > -1) {
+        findedUser.likedHouse.splice(indexOfHouseId, 1);
+        message = "Removed from wishlist";
+      }
+    }
+    await findedUser.save();
+    res.status(200).send({
+      message,
+      houseId,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
 };
 
 module.exports = {
@@ -125,4 +148,5 @@ module.exports = {
   login,
   getUserById,
   googleCreateUser,
+  likedHouse,
 };
