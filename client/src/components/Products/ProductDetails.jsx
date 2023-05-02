@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { fetchUserByid } from "../../features/users/userSlice";
@@ -9,10 +9,11 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import NearByPlaces from "./NearByPlaces";
 
-function ProductDetails() {
+function ProductDetails({ storePlacesHandler }) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { selectedHouse } = useSelector((state) => state.house);
+
   useEffect(() => {
     dispatch(fetchUserByid(selectedHouse[0].postby));
   }, []);
@@ -39,8 +40,9 @@ function ProductDetails() {
 
   return (
     <div>
-      <div className="flex px-[6vw] mt-10 gap-20"
-      // style={{ fontFamily: 'Rajdhani' }}
+      <div
+        className="flex px-[6vw] mt-10 gap-20"
+        // style={{ fontFamily: 'Rajdhani' }}
       >
         <div className="card w-[60vw] bg-base-100 shadow-md">
           <div className="card-body">
@@ -84,11 +86,13 @@ function ProductDetails() {
               <div className=" text-2xl">
                 <div>
                   <span className="font-semibold">RENT :</span>{" "}
-                  <span className="text-rose-500">{selectedHouse[0].rent} BDT/Month</span>
+                  <span className="text-rose-500">
+                    {selectedHouse[0].rent} BDT/Month
+                  </span>
                 </div>
               </div>
               <div>
-                <NearByPlaces />
+                <NearByPlaces storePlacesHandler={storePlacesHandler} />
               </div>
             </div>
           </div>
