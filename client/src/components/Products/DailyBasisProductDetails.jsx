@@ -8,8 +8,8 @@ import { makeBooking } from '../../features/dailyHouse/dailyHouseAPI';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { retriveAllDailyHouses } from '../../features/dailyHouse/dailyHouseSlice';
+import NearByPlaces from './NearByPlaces';
 
-import $ from 'jquery';
 
 function DailyBasisProductDetails() {
   const { id } = useParams();
@@ -77,8 +77,8 @@ function DailyBasisProductDetails() {
     <div>
       {/* {console.log(dailySelectedHouse)} */}
 
-      <div className="flex px-[6vw] mt-10 gap-20 ">
-        <div className="card w-[60vw]  bg-base-100 shadow-md">
+      <div className="flex px-[6vw] mt-10 gap-20">
+        <div className="card w-[60vw] bg-base-100 shadow-md">
           <div className="card-body">
             <div className="flex justify-between">
               {currentProductLandlord.length > 0 ? (
@@ -103,7 +103,7 @@ function DailyBasisProductDetails() {
             </div>
             <div className="flex flex-col gap-8">
               <div className="flex gap-4 align-middle ">
-                <div className=" text-xl font-bold">Details :</div>
+                <div className=" text-xl font-bold">DETAILS :</div>
                 <div className=" text-xl flex flex-row gap-5">
                   <p> {dailySelectedHouse[0].bedroom} Bedroom </p>
                   <p> {dailySelectedHouse[0].bathroom} Bathroom </p>
@@ -111,26 +111,23 @@ function DailyBasisProductDetails() {
                   <p> {dailySelectedHouse[0].sqft} Sqft </p>
                 </div>
               </div>
-              <div className=" text-2xl font-bold">
-                Available from{' '}
-                <span>
-                  {moment(dailySelectedHouse[0].availableform).format('Do')}
-                </span>{' '}
-                of{' '}
-                <span>
-                  {moment(dailySelectedHouse[0].availableform).format('MMMM')}
-                </span>
+              <div className=" text-2xl font-semibold">
+                AVAILABLE FORM :{' '}
+                <span className="text-rose-500">
+                  {moment(dailySelectedHouse[0].availableform).format("ll")}
+                </span>{" "}
               </div>
               <div className=" text-2xl">
                 <div>
-                  <span className="font-bold">Rent</span>{' '}
-                  {dailySelectedHouse[0].rentperday} BDT/Day
+                  <span className="font-semibold">RENT :</span>{" "}
+                  <span className="text-rose-500">{dailySelectedHouse[0].rent} BDT/Month</span>
                 </div>
               </div>
             </div>
           </div>
+          <NearByPlaces />
         </div>
-        <div className="card w-[28vw]  bg-base-100 shadow-xl">
+        <div className="card w-[28vw] h-fit bg-base-100 shadow-xl border-2 border-rose-200">
           <div className="card-body">
             <div className="card-title text-2xl">
               {' '}
@@ -222,7 +219,7 @@ function DailyBasisProductDetails() {
                         Math.floor(
                           dailySelectedHouse[0].monthlyMaintenanceCost / 30
                         ) *
-                          difference +
+                        difference +
                         299}
                     </span>
                   </div>

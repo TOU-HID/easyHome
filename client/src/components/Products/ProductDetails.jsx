@@ -39,8 +39,10 @@ function ProductDetails() {
 
   return (
     <div>
-      <div className="flex px-[6vw] mt-10 gap-20 ">
-        <div className="card w-[60vw]  bg-base-100 shadow-md">
+      <div className="flex px-[6vw] mt-10 gap-20"
+      // style={{ fontFamily: 'Rajdhani' }}
+      >
+        <div className="card w-[60vw] bg-base-100 shadow-md">
           <div className="card-body">
             <div className="flex justify-between">
               {currentProductLandlord.length > 0 ? (
@@ -91,7 +93,7 @@ function ProductDetails() {
             </div>
           </div>
         </div>
-        <div className="card w-[25vw] h-fit bg-base-100 shadow-xl">
+        <div className="card w-[25vw] h-fit bg-base-100 shadow-xl border-2 border-rose-200">
           <div className="card-body">
             <div className="card-title text-2xl">
               {" "}
