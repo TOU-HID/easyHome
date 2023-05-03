@@ -32,12 +32,12 @@ function NavigationBar({ isProductDetailsPage }) {
           </div>
         </>
       )}
-      <div className="flex flex-row items-center gap-6">
+      <div className="flex flex-row items-center gap-7">
         {loggedInUsers[0]?.role === "renter" ? (
           <div className="tabs">
             <div className="dropdown dropdown-bottom">
-              <div className="shadow-lg rounded-full">
-                <div tabIndex={0} className="indicator tab tab-active">
+              <div className="shadow-lg rounded-full bg-rose-500">
+                <div tabIndex={0} className="indicator tab tab-active text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -53,7 +53,7 @@ function NavigationBar({ isProductDetailsPage }) {
                     />
                   </svg>
 
-                  <span className="indicator-item badge mt-2">
+                  <span className="indicator-item badge mt-2 mr-1">
                     {allNotifications.length}
                   </span>
                 </div>
@@ -69,7 +69,7 @@ function NavigationBar({ isProductDetailsPage }) {
                         <div className="flex items-center gap-1">
                           <div className="avatar">
                             <div className="w-8 rounded-full">
-                              <img src="https://res.cloudinary.com/dqgdpbbtv/image/upload/v1681893166/houses/xpeg01gu067vzgtkyvzm.png" />
+                              <img src="https://res.cloudinary.com/dqgdpbbtv/image/upload/v1681893166/houses/xpeg01gu067vzgtkyvzm.png" alt="img" />
                             </div>
                           </div>
                           <span className="text-rose-700 text-lg font-bold">
@@ -77,7 +77,7 @@ function NavigationBar({ isProductDetailsPage }) {
                           </span>
                         </div>
                         <div>
-                          {item.message == "Your booking is accepted" ? (
+                          {item.message === "Your booking is accepted" ? (
                             <>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -120,26 +120,9 @@ function NavigationBar({ isProductDetailsPage }) {
                 </ul>
               ) : null}
             </div>
-            {/* <div>
-              <div className="indicator tab tab-lifted tab-active" onClick={() => setOpenNotificationModal(!openNotificationModal)}>
-                <i class="fa-solid fa-bell"></i>
-                <span className="indicator-item badge">{allNotifications.length}</span>
-              </div>
-              <div className={`${openNotificationModal ? null : 'hidden'} relative top-0 right-0 w-60 h-full z-10`}>
-                <div className='absolute flex flex-col w-full bg-[#fef2f492] rounded-md border-2'>
-                  {allNotifications.map(item =>
-                    <div className='flex flex-col p-1 mb-1 border-2 rounded-lg'>
-                      <span className='text-lg font-bold'>{item.sender.userName}</span>
-                      <span>{item.message}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-            </div> */}
           </div>
         ) : null}
-        <div className="Login pt-2 pr-1 h-10 pl-4 mt-1 mr-3">
+        <div className="Login">
           {isAuthenticated ? <LogoutDropdown /> : <Dropdown />}
         </div>
       </div>

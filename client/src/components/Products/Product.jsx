@@ -7,16 +7,14 @@ import { retriveAllDailyHouses } from '../../features/dailyHouse/dailyHouseSlice
 import DailyBasisProductCard from './DailyBasisProductCard';
 
 function Product({ showAll, dailyBasis }) {
-  // const dailyBasis = true;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [monthlyHouses, setMonthlyHouses] = useState([])
   const [dailyHouses, setDailyHouses] = useState([])
   const { houseList } = useSelector((state) => state.house);
   const { dailyHouseList } = useSelector((state) => state.dailyHouse);
   const { type, location, date, price, rooms } = useSelector((state) => state.filter);
-  console.log(date);
-  console.log('monthly', houseList);
+  // console.log(date);
+  // console.log('monthly', houseList);
   // console.log('daily', dailyHouseList);
 
   useEffect(() => {
@@ -52,7 +50,12 @@ function Product({ showAll, dailyBasis }) {
         setMonthlyHouses(houseList)
       }
     } else {
-      if (location && price?.maxPrice && rooms) {
+      if (location && !price?.maxPrice && !rooms) {
+        tempList = dailyHouseList.filter(house =>
+          house.area.toLowerCase().match(location.toLowerCase())
+        )
+        setDailyHouses(tempList)
+      } else if (location && price?.maxPrice && rooms) {
         tempList = dailyHouseList.filter(house =>
           house.area.toLowerCase().match(location.toLowerCase()) &&
           house.rentperday.toString() <= price.maxPrice &&

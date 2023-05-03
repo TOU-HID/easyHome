@@ -22,14 +22,14 @@ function UserProfile() {
 
       {loggedInUsers.length > 0 ? (
         <>
-          {loggedInUsers[0].role === 'landlord' ? (
+          {loggedInUsers[0]?.role === 'landlord' ? (
             <>
               <LandlordDashboard />
             </>
           ) : (
             <>
               <div className="mb-10">
-                <ProfileOptions userName={loggedInUsers[0].userName} />
+                <ProfileOptions userName={loggedInUsers[0]?.userName} />
               </div>
               <Product />
             </>

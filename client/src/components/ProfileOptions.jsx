@@ -28,7 +28,7 @@ function ProfileOptions({ userName }) {
   }, []);
 
   useEffect(() => {
-    socket?.emit("newUser", loggedInUsers[0]._id);
+    socket?.emit("newUser", loggedInUsers[0]?._id);
   }, [socket, loggedInUsers]);
 
   useEffect(() => {

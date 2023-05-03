@@ -27,3 +27,8 @@ export const loginUser = async (data) => {
   const response = await axios.post(`${BASE_URL}/user/login`, data);
   return response.data;
 };
+export const addRemoveWishList = async (data) => {
+  // console.log(data);
+  const response = await axios.post(`${BASE_URL}/user/like`, data);
+  return response.data;
+};

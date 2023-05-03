@@ -8,16 +8,14 @@ function Protected({ children }) {
   // check local storage e accessToken ase kina
   // const accessToken = localStorage.getItem('accessToken');
   if (!isAuthenticated) {
-    {
-      Swal.fire({
-        position: 'center',
-        icon: 'info',
-        text: 'Please login to explore more...',
+    Swal.fire({
+      position: 'center',
+      icon: 'info',
+      text: 'Please login to explore more...',
 
-        showConfirmButton: false,
-        timer: 2000,
-      });
-    }
+      showConfirmButton: false,
+      timer: 2000,
+    });
     return (
       <>
         <Navigate to="/" replace />;

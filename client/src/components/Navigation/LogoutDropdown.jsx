@@ -53,62 +53,19 @@ function LogoutDropdown() {
     dispatch(setLoggedInUsers([]));
   }
   return (
-    <div className="mt-3">
+    <div className="">
       {/* <div className="dropdown dropdown-end"> */}
-      <div className="flex">
-        <button
-          className="flex gap-3 justify-center align-middle"
+      <div className="flex gap-6">
+        <i
           onClick={handleProfileNavigation}
-        >
-          {/* <i
-            className="fa-solid fa-bars fa-lg"
-            style={{ color: '#161717' }}
-          ></i> */}
-          <i
-            className="fa-solid fa-circle-user fa-2xl"
-            style={{ color: "#161717" }}
-          ></i>
-        </button>
-        <button
-          className="flex gap-3 justify-center align-middle ml-3"
-          onClick={handleLogout}
-        >
-          <i
-            className="fa-solid fa-arrow-right-from-bracket fa-2xl"
-            style={{ color: "#161717" }}
-          ></i>
-        </button>
-      </div>
-      {/* <ul
-          tabIndex={0}
-          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-56 mb-2 mt-5"
-        >
-          <li>
-            <button
-              className="active:scale-y-90 transition-transform flex hover:bg-zinc-200"
-              onClick={handleProfileNavigation}
-            >
-              Profile
-            </button>
-          </li>
-          <li>
-            <button
-              className="  active:scale-y-90 transition-transform flex hover:bg-zinc-200"
-              onClick={handleLogout}
-            >
-              Log Out
-            </button>
-          </li>
-        </ul> */}
-      {/* </div> */}
+          className="fa-solid fa-circle-user fa-2xl text-4xl text-rose-500 cursor-pointer"
+        ></i>
 
-      {/* MODAL */}
-      {/* <div>
-        <Login />
+        <i
+          onClick={handleLogout}
+          className="fa-solid fa-arrow-right-from-bracket fa-2xl text-4xl text-rose-500 cursor-pointer"
+        ></i>
       </div>
-      <div>
-        <Signup />
-      </div> */}
     </div>
   );
 }

@@ -6,22 +6,11 @@ function Dropdown() {
     <div>
       <div className="dropdown dropdown-bottom dropdown-end ">
         <div className="flex">
-          <button className="flex gap-3 justify-center align-middle">
-            {/* <i
-            className="fa-solid fa-bars fa-lg"
-            style={{ color: '#161717' }}
-          ></i> */}
+          <button className="">
             <i
-              className="fa-solid fa-circle-user fa-2xl"
-              style={{ color: "#161717" }}
+              className="fa-solid fa-arrow-right-from-bracket fa-2xl text-4xl text-rose-500"
             ></i>
           </button>
-          {/* <button className="flex gap-3 justify-center align-middle ml-3">
-          <i
-            className="fa-solid fa-arrow-right-from-bracket fa-2xl"
-            style={{ color: "#161717" }}
-          ></i>
-        </button> */}
         </div>
 
         <ul
@@ -46,33 +35,6 @@ function Dropdown() {
           </li>
         </ul>
       </div>
-
-      {/* <div className="navbar bg-base-300 rounded-box">
-        <div className="flex-1 px-2 lg:flex-none">
-          <a className="text-lg font-bold">daisyUI</a>
-        </div>
-        <div className="flex justify-end flex-1 px-2">
-          <div className="flex items-stretch">
-            <a className="btn btn-ghost rounded-btn">Button</a>
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost rounded-btn">
-                Dropdown
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
-              >
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Item 2</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
       {/* MODAL */}
       <div>

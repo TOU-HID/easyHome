@@ -34,7 +34,6 @@ const SearchBox = () => {
 
   const handleLocation = (e) => {
     setLocation(e.target.value);
-    // console.log(location);
   };
 
   const handleRoom = (value) => {
@@ -46,9 +45,9 @@ const SearchBox = () => {
       location: location,
       date: date,
       price: price,
-      rooms: rooms
+      rooms: rooms === 'All' ? '' : rooms
     }
-    // console.log(filterStates);
+    console.log(filterStates);
     dispatch(setFilterStates({ filterStates }))
   }
 
@@ -62,7 +61,6 @@ const SearchBox = () => {
       <div className="hero-overlay bg-opacity-20"></div>
       <div className="hero-content text-center text-neutral-content w-full">
         <div className="w-full">
-          {/* <h1 className="mb-5 text-5xl font-bold">Hello there</h1> */}
           <div className="card bg-base-100 shadow-xl h-60">
             <div className="card-body w-full items-center">
               <div className="tabs justify-center mb-2">
@@ -97,7 +95,7 @@ const SearchBox = () => {
                     value={type === 'monthly' ? null : date}
                     disabled={type === 'monthly'}
                     separator={"to"}
-                    inputClassName="w-80 h-12 text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 p-2 rounded-xl outline-none"
+                    inputClassName="w-80 h-12 text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 p-2 rounded-xl outline-none z-50"
                   />
                 </div>
                 <div className="m-2">
@@ -106,14 +104,6 @@ const SearchBox = () => {
                       Price
                     </span>
                   </label>
-                  {/* <input
-                    type="text"
-                    id="minPrice"
-                    placeholder="Min"
-                    onChange={handlePrice}
-                    className="rounded-xl w-16 p-2 text-center text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 outline-none"
-                  />
-                  -- */}
                   <input
                     type="text"
                     id="maxPrice"
@@ -121,7 +111,7 @@ const SearchBox = () => {
                     onChange={handlePrice}
                     className="rounded-xl w-24 p-2 text-center bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 outline-none"
                   />
-                  <div className="dropdown dropdown-hover">
+                  <div className="dropdown dropdown-top dropdown-end">
                     <label
                       tabIndex="0"
                       className="btn ml-2 text-gray-400 rounded-xl bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200"
@@ -131,7 +121,18 @@ const SearchBox = () => {
                     <ul
                       tabIndex="0"
                       className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-gray-400"
+
                     >
+                      <li>
+                        <span onClick={() => handleRoom('All')} value={'All'}>
+                          All
+                        </span>
+                      </li>
+                      <li>
+                        <span onClick={() => handleRoom(2)} value={1}>
+                          1 Room
+                        </span>
+                      </li>
                       <li>
                         <span onClick={() => handleRoom(2)} value={2}>
                           2 Rooms

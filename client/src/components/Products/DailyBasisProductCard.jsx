@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addRemoveWishListAdded } from '../../features/users/userSlice';
+
 function DailyBasisProductCard({ house }) {
+  const dispatch = useDispatch();
+  const { loggedInUsers, wishlist } = useSelector((state) => state.user);
   // Rating related logic
   let rating = 0;
   const no_of_rating = house.rating.length;
@@ -9,18 +14,27 @@ function DailyBasisProductCard({ house }) {
     rating += elem.rate
   );
 
+  const wishListHandeler = () => {
+    const data = { houseId: house._id, userId: loggedInUsers[0]?._id }
+    // console.log(house._id);
+    dispatch(addRemoveWishListAdded(data))
+  }
+
   return (
-    <div className="card w-[20vw]  bg-base-100 shadow-md ">
+    <div className="relative card w-[20vw]  bg-base-100 shadow-md">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth={1.5} className={`absolute -top-1 right-1 w-6 h-6 cursor-pointer ${wishlist?.wishlist?.includes(house._id.toString()) ? 'fill-rose-400' : 'fill-none'} stroke-red-400 z-50`} onClick={wishListHandeler}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+      </svg>
       <figure className="h-[20vh] rounded-lg">
         <Link to={`/dailyBasisHomesDetails/${house._id}`}>
           <img
             src={house.image[0].url}
             alt="Shoes"
-            className="rounded-md shadow-sm mt-4"
+            className="rounded-md shadow-sm mt-4 w-72 h-44"
           />
         </Link>
       </figure>
-      <div className="card-body ">
+      <div className="card-body mt-2">
         <div className="flex justify-between">
           <div className="flex flex-col justify-start">
             <Link to={`/dailyBasisHomesDetails/${house._id}`}>

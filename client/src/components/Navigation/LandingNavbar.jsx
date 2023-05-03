@@ -16,6 +16,7 @@ function LandingNavbar() {
           <img
             src="https://res.cloudinary.com/dru7kzv3i/image/upload/v1682933132/esyhome-removebg-preview_bu9w5o.jpg"
             className="w-20 h-18 mt-2 ml-4 scale-150"
+            alt="img"
           ></img>
         </Link>
       </div>
@@ -29,7 +30,7 @@ function LandingNavbar() {
         </>
       )} */}
 
-      <div className="Login pt-2 pr-1 h-10 pl-4  mt-2 mr-3">
+      <div className="Login pt-2 pr-1 h-10 pl-4 mt-2 mr-3">
         {isAuthenticated ? <LogoutDropdown /> : <Dropdown />}
       </div>
     </div>

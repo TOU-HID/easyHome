@@ -6,6 +6,7 @@ import {
   loginUser,
   getUserByID,
   createAndGetGoogleUser,
+  addRemoveWishList,
 } from './userAPI';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   isAuthenticated: false,
   currentProductLandlord: [],
   allNotifications: [],
+  wishlist: [],
 };
 
 export const addUser = createAsyncThunk('user/addUser', async (data) => {
@@ -43,6 +45,16 @@ export const googleAddAndFetchUser = createAsyncThunk(
   async (data) => {
     const userInfo = await createAndGetGoogleUser(data);
     return userInfo;
+  }
+);
+export const addRemoveWishListAdded = createAsyncThunk(
+  'houses/addRemoveWishListAdded',
+  async (data) => {
+    // console.log(houseId);
+    const wishlist = await addRemoveWishList(data);
+    // wishlist.then((res) => console.log(res));
+    // console.log('wishlist', wishlist);
+    return wishlist;
   }
 );
 
@@ -138,6 +150,21 @@ const userSlice = createSlice({
         state.currentProductLandlord[0] = action.payload;
       })
       .addCase(fetchUserByid.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.error = action.error?.message;
+      })
+
+      .addCase(addRemoveWishListAdded.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.wishlist = action.payload;
+      })
+      .addCase(addRemoveWishListAdded.pending, (state) => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(addRemoveWishListAdded.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.error = action.error?.message;
