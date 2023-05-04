@@ -10,7 +10,7 @@ mapboxgl.accessToken =
 const MapTest = ({ nearbyPlaces }) => {
   const [location, setLocation] = useState({});
   const [showPopup, setShowPopUp] = useState([
-    true,
+    false,
     false,
     false,
     false,
@@ -58,7 +58,7 @@ const MapTest = ({ nearbyPlaces }) => {
             longitude: location?.lng,
             width: "200%",
             height: "100%",
-            zoom: 17,
+            zoom: 15,
           }}
           mapboxApiAccessToken={mapboxgl.accessToken}
           mapStyle="mapbox://styles/saimonsiddique/clh4vr8pp00oz01prgnhwae8v"
@@ -71,7 +71,7 @@ const MapTest = ({ nearbyPlaces }) => {
                     longitude={location?.lng}
                     latitude={location?.lat}
                     anchor="top-right"
-                  // onClose={() => setShowPopUp(!showPopup)}
+                    // onClose={() => setShowPopUp(!showPopup)}
                   >
                     <span className="font-semibold">{area}</span>
                   </Popup>
@@ -104,26 +104,31 @@ const MapTest = ({ nearbyPlaces }) => {
                     // >
                     <span
                       className={`
-                                ${place.pType === "Healthcare"
-                          ? "font-semibold text-rose-500"
-                          : ""
-                        }
-                                ${place.pType === "Food"
-                          ? "font-semibold text-rose-500"
-                          : ""
-                        }
-                                ${place.pType === "Shop"
-                          ? "font-semibold text-rose-500"
-                          : ""
-                        }
-                                ${place.pType === "Education"
-                          ? "font-semibold text-rose-500"
-                          : ""
-                        }
-                                ${place.pType === "Bank"
-                          ? "font-semibold text-rose-500"
-                          : ""
-                        }
+                                ${
+                                  place.pType === "Healthcare"
+                                    ? "font-semibold text-rose-500"
+                                    : ""
+                                }
+                                ${
+                                  place.pType === "Food"
+                                    ? "font-semibold text-rose-500"
+                                    : ""
+                                }
+                                ${
+                                  place.pType === "Shop"
+                                    ? "font-semibold text-rose-500"
+                                    : ""
+                                }
+                                ${
+                                  place.pType === "Education"
+                                    ? "font-semibold text-rose-500"
+                                    : ""
+                                }
+                                ${
+                                  place.pType === "Bank"
+                                    ? "font-semibold text-rose-500"
+                                    : ""
+                                }
                                 `}
                     >
                       {place.name}
@@ -154,29 +159,34 @@ const MapTest = ({ nearbyPlaces }) => {
                   ) : null} */}
                   <i
                     // onClick={() => setShowPopUp(!showPopup)}
-                    className={`fa-solid fa-house-medical text-xl text-blue-700 ${place.pType === "Healthcare" ? "animate-bounce" : "hidden"
-                      }`}
+                    className={`fa-solid fa-house-medical text-xl text-blue-700 ${
+                      place.pType === "Healthcare" ? "animate-bounce" : "hidden"
+                    }`}
                   ></i>
                   <i
                     // onClick={() => setShowPopUp(!showPopup)}
-                    className={`fa-solid fa-utensils text-xl text-green-600 ${place.pType === "Food" ? "animate-bounce" : "hidden"
-                      }`}
+                    className={`fa-solid fa-utensils text-xl text-green-600 ${
+                      place.pType === "Food" ? "animate-bounce" : "hidden"
+                    }`}
                   ></i>
                   <i
                     // onClick={() => setShowPopUp(!showPopup)}
-                    className={`fa-solid fa-cart-shopping text-xl text-yellow-900 ${place.pType === "Shop" ? "animate-bounce" : "hidden"
-                      }`}
+                    className={`fa-solid fa-cart-shopping text-xl text-yellow-900 ${
+                      place.pType === "Shop" ? "animate-bounce" : "hidden"
+                    }`}
                   ></i>
                   <i
                     // onClick={() => setShowPopUp(!showPopup)}
-                    className={`fa-solid fa-user-graduate text-xl text-rose-600 ${place.pType === "Education" ? "animate-bounce" : "hidden"
-                      }`}
-                  // onClick={() => handlePopup(i)}
+                    className={`fa-solid fa-user-graduate text-xl text-rose-600 ${
+                      place.pType === "Education" ? "animate-bounce" : "hidden"
+                    }`}
+                    // onClick={() => handlePopup(i)}
                   ></i>
                   <i
                     // onClick={() => setShowPopUp(!showPopup)}
-                    className={`fa-solid fa-building-columns text-xl text-black ${place.pType === "Bank" ? "animate-bounce" : "hidden"
-                      }`}
+                    className={`fa-solid fa-building-columns text-xl text-black ${
+                      place.pType === "Bank" ? "animate-bounce" : "hidden"
+                    }`}
                   ></i>
                 </Marker>
               ))}
