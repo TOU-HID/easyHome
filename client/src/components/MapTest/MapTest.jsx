@@ -10,9 +10,9 @@ mapboxgl.accessToken =
 const MapTest = ({ nearbyPlaces }) => {
   const [location, setLocation] = useState({});
   const { selectedHouse } = useSelector((state) => state.house);
-  const area = selectedHouse[0].area;
-  const city = selectedHouse[0].city;
-  const address = area.toLowerCase() + "," + city.toLowerCase();
+  const area = selectedHouse[0]?.area;
+  const city = selectedHouse[0]?.city;
+  const address = area?.toLowerCase() + "," + city?.toLowerCase();
   const [showPopup, setShowPopUp] = useState([false, false, false, false, false]);
 
   const getUserByID = async (address) => {
@@ -68,21 +68,14 @@ const MapTest = ({ nearbyPlaces }) => {
                   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                 </svg>
               </Marker>
-              {nearbyPlaces.map((place, i) => (
+              {nearbyPlaces?.map((place, i) => (
                 <Marker
                   key={i}
                   latitude={place.latitude}
                   longitude={place.longitude}
                 >
                   {showPopup && (
-                    <Popup
-                      longitude={place?.longitude}
-                      latitude={place?.latitude}
-                      anchor="top-right"
-                    // onClose={() => setShowPopUp(!showPopup)}
-                    >
-                      {place.name}
-                    </Popup>
+                    <div>{place.name}</div>
                   )}
                   <i
                     onClick={() => setShowPopUp(!showPopup)}

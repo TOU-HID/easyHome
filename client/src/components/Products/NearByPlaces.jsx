@@ -7,10 +7,10 @@ const NearByPlaces = ({ storePlacesHandler }) => {
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
   const [location, setLocation] = useState({});
   const { selectedHouse } = useSelector((state) => state.house);
-
-  const area = selectedHouse[0].area;
-  const city = selectedHouse[0].city;
-  const address = area.toLowerCase() + "," + city.toLowerCase();
+  console.log(selectedHouse);
+  const area = selectedHouse[0]?.area;
+  const city = selectedHouse[0]?.city;
+  const address = area?.toLowerCase() + "," + city?.toLowerCase();
 
   const getUserByID = async (address) => {
     const response = await axios.get(
@@ -93,7 +93,7 @@ const NearByPlaces = ({ storePlacesHandler }) => {
           Food
         </button>
       </div>
-      {nearbyPlaces.length > 0 ?
+      {nearbyPlaces?.length > 0 ?
         <div className="grid grid-cols-2 mx-[10vh]">
           <ul className="list-disc w-80 m-2 ml-6">
             {nearbyPlaces?.slice(1).map((item, i) => {

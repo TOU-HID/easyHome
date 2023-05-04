@@ -117,7 +117,7 @@ function Login() {
             </div>
 
             <div className="">
-              <GoogleAuth width={'330'} />
+              <GoogleAuth width={'300'} />
             </div>
           </form>
         </div>

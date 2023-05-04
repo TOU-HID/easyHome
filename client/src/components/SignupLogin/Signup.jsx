@@ -21,13 +21,13 @@ function Signup() {
   const handleOnChange = (e) => {
     isChecked
       ? setUserCredientials((prevState) => ({
-          ...prevState,
-          role: 'renter',
-        }))
+        ...prevState,
+        role: 'renter',
+      }))
       : setUserCredientials((prevState) => ({
-          ...prevState,
-          role: 'landlord',
-        }));
+        ...prevState,
+        role: 'landlord',
+      }));
     setIsChecked(!isChecked);
   };
 
@@ -142,7 +142,7 @@ function Signup() {
                 checked={isChecked}
                 className="checkbox checkbox-error"
                 onChange={handleOnChange}
-                // required="required"
+              // required="required"
               />
             </label>
 

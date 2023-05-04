@@ -12,6 +12,8 @@ function NavigationBar({ isProductDetailsPage }) {
   const { loggedInUsers, isAuthenticated, allNotifications } = useSelector(
     (state) => state.user
   );
+
+  console.log(allNotifications);
   return (
     <div className="flex justify-between px-[6vw] pt-5 pb-5 border-b-2">
       <div className="logo">

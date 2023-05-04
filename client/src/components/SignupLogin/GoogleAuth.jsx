@@ -63,7 +63,7 @@ function GoogleAuth({ width }) {
             }}
             width={width}
             border={width}
-            // type={'icon'}
+          // type={'icon'}
           />
         </GoogleOAuthProvider>
       </div>

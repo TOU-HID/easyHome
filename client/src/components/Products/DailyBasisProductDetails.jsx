@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment';
 import { fetchUserByid } from '../../features/users/userSlice';
 import ProductRating from './ProductRating';
@@ -11,12 +11,11 @@ import { retriveAllDailyHouses } from '../../features/dailyHouse/dailyHouseSlice
 import NearByPlaces from './NearByPlaces';
 
 
-function DailyBasisProductDetails() {
+function DailyBasisProductDetails({ storePlacesHandler }) {
   const { id } = useParams();
-
   const dispatch = useDispatch();
-  // const { dailySelectedHouse } = useSelector((state) => state.house);
   const { dailySelectedHouse } = useSelector((state) => state.dailyHouse);
+
   useEffect(() => {
     dispatch(fetchUserByid(dailySelectedHouse[0].postby));
   }, []);
@@ -125,7 +124,7 @@ function DailyBasisProductDetails() {
               </div>
             </div>
           </div>
-          <NearByPlaces />
+          <NearByPlaces storePlacesHandler={storePlacesHandler} />
         </div>
         <div className="card w-[28vw] h-fit bg-base-100 shadow-xl border-2 border-rose-200">
           <div className="card-body">

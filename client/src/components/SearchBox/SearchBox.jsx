@@ -55,7 +55,7 @@ const SearchBox = () => {
     <div
       className="hero h-96 w-full"
       style={{
-        backgroundImage: `url("https://res.cloudinary.com/dqgdpbbtv/image/upload/v1681882749/houses/s410jqw2widki7egw4rr.png")`,
+        backgroundImage: `url("https://res.cloudinary.com/dgsx9bvvf/image/upload/v1683122017/photo-1600585154340-be6161a56a0c_uphpei.jpg")`,
       }}
     >
       <div className="hero-overlay bg-opacity-20"></div>
@@ -78,25 +78,17 @@ const SearchBox = () => {
                     type="text"
                     placeholder="Type here"
                     onChange={handleLocation}
-                    className="input bg-base-100 text-gray-800 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 rounded-xl focus:outline-none"
+                    className="input text-gray-800 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 rounded-xl focus:outline-none"
                   />
                 </div>
                 <div className="m-2">
                   <label className="label">
                     <span className="label-text font-bold font-large">
-                      Start - End
+                      Date
                     </span>
                   </label>
-                  <Datepicker
-                    primaryColor={"rose"}
-                    placeholder="Choose start and end date"
-                    onChange={handleDateChange}
-                    minDate={new Date()}
-                    value={type === 'monthly' ? null : date}
-                    disabled={type === 'monthly'}
-                    separator={"to"}
-                    inputClassName="w-80 h-12 text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 p-2 rounded-xl outline-none z-50"
-                  />
+                  <input type="date" className="input w-80 h-12 text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 p-2 rounded-xl outline-none" disabled={type === 'monthly'} />
+                  {/* <input type="date" className="w-80 h-12 text-gray-800 bg-base-100 border-2 border-gray-100 hover:border-gray-100 hover:bg-base-200 p-2 rounded-xl outline-none" /> */}
                 </div>
                 <div className="m-2">
                   <label className="label">
